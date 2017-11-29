@@ -12,11 +12,25 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> findAll() {
-		return sessionFactory.getCurrentSession()
-				.createQuery("from Category")
-				.list();
+		List<Category> categories = null;
+		Session session = null;
+		Transaction transaction = null;
+		try {
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			categories = session.createQuery("from Category").list();
+			transaction.commit();
+		} catch (Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return categories;
 	}
 
 	
