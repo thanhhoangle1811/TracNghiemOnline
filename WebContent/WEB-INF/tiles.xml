@@ -8,4 +8,21 @@
     	<put-attribute name="content" 
     		value="/WEB-INF/jsp/test/index.jsp"></put-attribute>
     </definition>
+    
+    <definition name="exam.create" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/exam/create.jsp"></put-attribute>
+    </definition>
+    
+    <!-- ca le 
+    Ca le viet
+    
+    */ -->
+    
+    <!-- hieu
+    Hieu viet
+    
+    */ -->
+    
 </tiles-definitions>
