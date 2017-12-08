@@ -1,26 +1,30 @@
 package demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import demo.entities.Question;
+import demo.entities.*;
 import demo.services.*;
 
 @Controller
 @RequestMapping("exam")
 public class ExamController {
 	@Autowired
-	private QuestionService questionService;
+	private ExamService examService;
 
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.GET)
 	public String create(ModelMap modelMap) {
 
-		List<Question> questions =  questionService.findByExamId(1);
-		modelMap.put("questions", questions);
+		Exam exam =  examService.findById(1);
+		List<Question> list = new ArrayList<Question>(exam.getQuestions());
+//		Set<Question> questions = exam.getQuestions(); 
+		modelMap.put("questions", list);
 		return "exam.create";
 	}
 
