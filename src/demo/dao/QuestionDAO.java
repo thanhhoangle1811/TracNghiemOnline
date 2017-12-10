@@ -4,4 +4,5 @@ import java.util.List;
 import demo.entities.*;
 public interface QuestionDAO {
 	public List<Question> findByExam(int gradeId); 
+	public boolean createQuestion(Question question);
 }

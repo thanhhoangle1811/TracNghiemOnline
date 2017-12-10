@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import demo.dao.CategoryDAO;
 import demo.dao.QuestionDAO;
+import demo.entities.Exam;
 import demo.entities.Question;
+import demo.entities.Questiontype;
 
 @Service("questionService")
 @Transactional
@@ -20,6 +22,10 @@ public class QuestionServiceImpl implements QuestionService{
 		// TODO Auto-generated method stub
 		
 		return questionDAO.findByExam(examId);
+	}
+	@Override
+	public boolean createQuestion(Question question) {
+		return questionDAO.createQuestion(question);
 	}
 
 }

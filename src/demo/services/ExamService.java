@@ -1,7 +1,11 @@
 package demo.services;
 
-import demo.entities.Exam;
+import java.util.List;
+
+import demo.entities.*;
 
 public interface ExamService {
     public Exam findById(int id);
+    public List<Exam> findAll();
+    public List<Question> findQuestionsById(int id);
 }
