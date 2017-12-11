@@ -17,7 +17,20 @@ import demo.entities.Questiontype;
 public class QuestionServiceImpl implements QuestionService{
 	@Autowired
 	private QuestionDAO questionDAO;
+	
 	@Override
+    public boolean updateListQuestion(List<Question> questions) {
+	    boolean result = false;
+        // TODO Auto-generated method stub
+	    for (Question question : questions) {
+	        result = questionDAO.updateQuestion(question);
+	        if(result == false) {
+	            break;
+	        }
+        }
+        return result;
+    }
+    @Override
 	public List<Question> findByExamId(int examId) {
 		// TODO Auto-generated method stub
 		

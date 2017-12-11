@@ -11,6 +11,8 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import com.sun.swing.internal.plaf.basic.resources.basic;
+
 import demo.dao.QuestionDAO;
 import demo.entities.*;
 import demo.services.*;
@@ -33,6 +35,17 @@ public class ExamController {
 		return "exam.edit";
 	}
 	
+	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.POST)
+    public String edit(@ModelAttribute("questions") List<Question> questions,ModelMap modelMap) {
+//        boolean flag = questionService.updateListQuestion(questions);
+	    boolean flag = false;
+        if(flag= true){
+            return "exam.create";
+        }else{
+            return "demo.index";
+        }
+        
+    }
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.GET)
 	public String create(ModelMap modelMap) {
 		List<Exam> exams = examService.findAll();
