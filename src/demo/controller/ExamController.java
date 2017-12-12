@@ -65,6 +65,7 @@ public class ExamController {
 		}
 		
 	}
+	/*Ca le*/
 	
 	@RequestMapping(value = { "/showexam.html" }, params = { "id" }, method = RequestMethod.GET)
 	public String showexam(@RequestParam(value = "id") int id, ModelMap modelMap) {
@@ -73,4 +74,19 @@ public class ExamController {
 		modelMap.put("questions", list);
 		return "exam.showexam";
 	}
+	
+	@RequestMapping(value = { "/showexam.html" }, method = RequestMethod.POST)
+	public String showexam(@ModelAttribute("exam") Exam exam,ModelMap modelMap) {
+		/*boolean flag = questionService.createQuestion(question);
+		if(flag){
+			return "exam.create";
+		}else{
+			return "demo.index";
+		}*/
+		return "exam.create";
+	}
+	
+	
+	
+	/*Ca le*/
 }
