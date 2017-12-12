@@ -21,6 +21,23 @@
     </definition>
     
     <!-- ca le  Ca le viet */ -->
+    <definition name="category.index" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/category/index.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="category.examsbycategory" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/category/examsbycategory.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="exam.showexam" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/exam/showexam.jsp"></put-attribute>
+    </definition>
     
     <!-- hieu Hieu viet  */ -->
     
