@@ -9,5 +9,7 @@ public interface QuestionService {
 	public List<Question> findByExamId(int examId);
 	public boolean createQuestion(Question question);
 
-    public boolean updateListQuestion(List<Question> questions);
+    public boolean updateQuestion(Question question);
+
+	public Question findById(int questionId);
 }

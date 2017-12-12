@@ -19,16 +19,13 @@ public class QuestionServiceImpl implements QuestionService{
 	private QuestionDAO questionDAO;
 	
 	@Override
-    public boolean updateListQuestion(List<Question> questions) {
-	    boolean result = false;
-        // TODO Auto-generated method stub
-	    for (Question question : questions) {
-	        result = questionDAO.updateQuestion(question);
-	        if(result == false) {
-	            break;
-	        }
-        }
-        return result;
+	public Question findById(int questionId){
+		return questionDAO.findById(questionId);
+	}
+
+	@Override
+    public boolean updateQuestion(Question question) {
+	    return  questionDAO.updateQuestion(question);
     }
     @Override
 	public List<Question> findByExamId(int examId) {

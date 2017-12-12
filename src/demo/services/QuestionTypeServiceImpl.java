@@ -18,4 +18,5 @@ public class QuestionTypeServiceImpl implements QuestionTypeService{
 	public List<Questiontype> findAll() {
 		return questionTypeDAO.findAll();
 	}
+	
 }
