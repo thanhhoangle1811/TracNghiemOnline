@@ -18,7 +18,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 		<c:forEach var="category" items="${categories }">
 			<tr>
 				<td>${category.id }</td>
-				<td>${category.name }</td>
+				<td>
+				<a href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }">${category.name }</a>				
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

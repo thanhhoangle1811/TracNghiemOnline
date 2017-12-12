@@ -33,6 +33,26 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return categories;
 	}
 
-	
+	@Override
+    public Category findById(int id) {
+        Category category = null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Category c where c.id = :id");
+            query.setParameter("id", id);
+            category = (Category) query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return category;
+    }
 	
 }

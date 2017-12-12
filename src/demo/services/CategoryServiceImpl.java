@@ -21,5 +21,11 @@ public class CategoryServiceImpl
 	public List<Category> findAll() {
 		return categoryDAO.findAll();
 	}
+	
+	@Override
+    public Category findById(int id) {
+        // TODO Auto-generated method stub
+        return categoryDAO.findById(id);
+    }
 
 }

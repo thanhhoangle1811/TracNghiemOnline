@@ -39,7 +39,7 @@ public class ExamController {
     public String edit(@ModelAttribute("questions") List<Question> questions,ModelMap modelMap) {
 //        boolean flag = questionService.updateListQuestion(questions);
 	    boolean flag = false;
-        if(flag= true){
+        if(flag){
             return "exam.create";
         }else{
             return "demo.index";
@@ -58,11 +58,19 @@ public class ExamController {
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.POST)
 	public String createQuestion(@ModelAttribute("question") Question question,ModelMap modelMap) {
 		boolean flag = questionService.createQuestion(question);
-		if(flag= true){
+		if(flag){
 			return "exam.create";
 		}else{
 			return "demo.index";
 		}
 		
+	}
+	
+	@RequestMapping(value = { "/showexam.html" }, params = { "id" }, method = RequestMethod.GET)
+	public String showexam(@RequestParam(value = "id") int id, ModelMap modelMap) {
+		Exam exam =  examService.findById(id);
+		List<Question> list = new ArrayList<Question>(exam.getQuestions());
+		modelMap.put("questions", list);
+		return "exam.showexam";
 	}
 }
