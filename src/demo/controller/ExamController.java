@@ -28,18 +28,18 @@ public class ExamController {
 	private QuestionService questionService; 
 
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
-	public String edit(@RequestParam("examid") int examId,  ModelMap modelMap) {
-		Exam exam = examService.findById(examId);
-		List<Question> questions = exam.getQuestions();
-		modelMap.put("questions", questions);
+	public String edit(@RequestParam("questionid") int questionId,  ModelMap modelMap) {
+		Question question = questionService.findById(questionId);
+		
+		modelMap.put("question", question);
 		return "exam.edit";
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.POST)
-    public String edit(@ModelAttribute("questions") List<Question> questions,ModelMap modelMap) {
-//        boolean flag = questionService.updateListQuestion(questions);
-	    boolean flag = false;
-        if(flag){
+    public String edit(@ModelAttribute("question") Question question,ModelMap modelMap) {
+        boolean flag = questionService.updateQuestion(question);
+        if(flag == true){
             return "exam.create";
         }else{
             return "demo.index";
