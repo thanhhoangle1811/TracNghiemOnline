@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -57,7 +58,7 @@ public class Role implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
 	public List<Account> getAccounts() {
 		return this.accounts;
 	}

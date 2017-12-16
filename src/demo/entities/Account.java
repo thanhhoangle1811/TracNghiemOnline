@@ -4,6 +4,8 @@ package demo.entities;
 import demo.entities.*;
 import java.util.HashSet;
 import java.util.*;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +27,7 @@ import javax.persistence.Table;
 public class Account implements java.io.Serializable {
 
 	private Integer id;
-	private Role role;
+	private List<Role> roles;
 	private String firstname;
 	private String lastname;
 	private String email;
@@ -33,16 +37,16 @@ public class Account implements java.io.Serializable {
 	public Account() {
 	}
 
-	public Account(Role role, String firstname, String lastname, String email, String password) {
-		this.role = role;
+	public Account(List<Role> roles, String firstname, String lastname, String email, String password) {
+		this.roles = roles;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
 	}
 
-	public Account(Role role, String firstname, String lastname, String email, String password, List<Result> results) {
-		this.role = role;
+	public Account(List<Role> roles, String firstname, String lastname, String email, String password, List<Result> results) {
+		this.roles = roles;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
@@ -62,14 +66,17 @@ public class Account implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "roleid", nullable = false)
-	public Role getRole() {
-		return this.role;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "accountrole", catalog = "onlinequiz", joinColumns = {
+			@JoinColumn(name = "accountid", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "roleid",
+					nullable = false, updatable = false) })
+	public List<Role> getRoles() {
+		return this.roles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRole(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Column(name = "firstname", nullable = false, length = 50)
