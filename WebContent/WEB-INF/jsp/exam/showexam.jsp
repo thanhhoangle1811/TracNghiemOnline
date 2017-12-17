@@ -24,8 +24,13 @@
 		<div class="top_panel_title_inner">
 			<h1 class="page_title">Tests and Quizzes</h1>
 		</div>
-	</div>
+	</div>                         
 	<div class="wpb_column vc_column_container vc_col-sm-12" style="text-align : left;">
+	<div class="wpProQuiz_question_text" style="color:#1ebeb4;">
+		Time limit: <input type="text" style="width:150px;" value="05:00">
+		
+	</div>
+	<br>
 		<c:forEach items="${questions}" var="question" varStatus="status">
 				<div class="wpProQuiz_question_text">
 					<p>${status.index + 1}.${question.content}</p>
@@ -38,16 +43,7 @@
 						</label>
 					</c:forEach>
 					</li>
-				</ul>	
-				<%-- 
-				<div style="margin-left: 30px;">
-					<c:forEach items="${question.answers}" var="answer" varStatus="stt">
-						<label style="display: block;">
-							<input type="radio" name="questions[${status.index }].result[${stt.index }].answer.istrue" value="${answer.id}">${answer.content} 
-						</label>
-					</c:forEach>
-				</div>
-				--%>	
+				</ul>		
 		</c:forEach>
 	</div>
 	<br></br>
