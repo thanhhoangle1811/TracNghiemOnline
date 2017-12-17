@@ -75,7 +75,7 @@ public class Account implements java.io.Serializable {
 		return this.roles;
 	}
 
-	public void setRole(List<Role> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 
