@@ -39,6 +39,12 @@
     		value="/WEB-INF/jsp/exam/showexam.jsp"></put-attribute>
     </definition>
     
+    <definition name="general.login" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/general/login.jsp"></put-attribute>
+    </definition>
+    
     <!-- hieu Hieu viet  */ -->
     
 </tiles-definitions>
