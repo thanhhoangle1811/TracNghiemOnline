@@ -77,6 +77,7 @@ img.emoji {
 <link property="stylesheet" rel='stylesheet' id='evo_fc_styles-css'  href='http://localhost:8081/css/wp-content/plugins/eventon-full-cal/assets/fc_styles447e.css?ver=4.7.7' type='text/css' media='all' />
 <link property="stylesheet" rel='stylesheet' id='js_composer_front-css'  href='http://localhost:8081/css/wp-content/plugins/js_composer/assets/css/js_composer.min972f.css?ver=5.0.1' type='text/css' media='all' />
 <script type='text/javascript' src='http://localhost:8081/css/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://localhost:8081/css/wp-content/jquery-3.2.1.min.js?v=1.0'></script>
 <script type='text/javascript' src='http://localhost:8081/css/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
 <script type='text/javascript' src='http://localhost:8081/css/wp-content/plugins/content_timeline/js/frontend/jquery.easing.1.3447e.js?ver=4.7.7'></script>
 <script type='text/javascript' src='http://localhost:8081/css/wp-content/plugins/content_timeline/js/frontend/jquery.timeline447e.js?ver=4.7.7'></script>
