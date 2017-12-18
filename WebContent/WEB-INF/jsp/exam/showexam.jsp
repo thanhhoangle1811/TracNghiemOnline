@@ -46,12 +46,12 @@
 						<c:forEach items="${question.answers}" var="answer" varStatus="stt">
                         <input type="hidden" name ="answers[${countAnswer }].prefix" value="${answer.prefix}"/>
                         <input type="hidden" name ="answers[${countAnswer }].content" value="${answer.content}"/>
-                        <input type="hidden" name ="answers[${countAnswer }].istrue"  value="true" class="answer_${stt.index }"/>
+                        <input type="hidden" name ="answers[${countAnswer }].istrue"  value="false" class="answer_${countAnswer } question_${question.id }"/>
                         <input type="hidden" name ="answers[${countAnswer }].isStudent"  value="true" />
                         <input type="hidden" name ="answers[${countAnswer }].question.id"  value="${question.id }"/>
                         <label>${answer.prefix}</label>
 						<label style="display: block;">
-							<input class="wpProQuiz_questionInput" type="radio" name="questions[${status.index }]" value="${answer.id}">${answer.content} 
+							<input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="radio" name="questions[${status.index }]" >${answer.content} 
 						</label>
                         <c:set var = "countAnswer" scope = "session" value = "${countAnswer +1 }"/>
 					</c:forEach>
@@ -60,5 +60,46 @@
 		</c:forEach>
 	</div>
 	<br></br>
-	<input type="submit" />
+	<input type="submit" id ="submit" />
 </s:form>
+<script>
+var a = $('.wpProQuiz_question_text').find('input');
+$(document).ready(function(){
+    
+    a.val("1000:00");
+    startTimer();
+    $('.wpProQuiz_questionInput').on("change",function(){
+    	var questionId = $(this).attr('questionid');
+    	var answerNumber = $(this).attr('bindinput');
+    	var status = $(this).prop("checked");
+        if($(this).attr('type') == "radio"){
+            $('.question_'+questionId).val(false);
+        }
+    	if(status){
+    		$('.answer_' +answerNumber ).val(true);	
+    	}else{
+    		$('.answer_' +answerNumber ).val(false);   
+    	}
+    });
+    /* $("#submit").on("click",function(){
+    	
+    }); */
+});
+function startTimer() {
+    var presentTime = a.val();
+    var timeArray = presentTime.split(/[:]+/);
+    var m = timeArray[0];
+    var s = checkSecond((timeArray[1] - 1));
+    if(s==59){m=m-1}
+    if(m<0){alert('timer completed')}
+    
+    a.val(m + ":" + s);
+    setTimeout(startTimer, 1000);
+  }
+  
+  function checkSecond(sec) {
+    if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+    if (sec < 0) {sec = "59"};
+    return sec;
+  }
+</script>
