@@ -7,4 +7,5 @@ public interface QuestionDAO {
 	public boolean createQuestion(Question question);
 	public boolean updateQuestion(Question questions);
 	public Question findById(int questionId);
+	public List<Question> findQuestionByExamid(int examId);
 }

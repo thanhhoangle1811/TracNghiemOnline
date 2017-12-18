@@ -19,7 +19,27 @@ public class QuestionDAOImpl implements QuestionDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	
+	public List<Question> findQuestionByExamid(int examId){
+	    List<Question> result = null;
+	    Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Exam e where e.id = :id");
+            query.setParameter("id", examId);
+            Exam exam =  (Exam) query.uniqueResult();
+            result = exam.getQuestions();
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+	    return result;
+	}
 	public Question findById(int questionId) {
 	    Question result = null;
 	    Session session = null;

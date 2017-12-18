@@ -2,9 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<s:form method="post" commandName="exam"
+<s:form method="post" commandName="examDto"
 	action="${pageContext.request.contextPath }/exam/showexam.html">
+    <input type="hidden" name="exam.id" value="${examId}"/>
+    <input type="hidden" name="account.id" value="1"/>
+    
 	<div>${exam.name}</div>
+    
 	
 	<%-- <c:forEach items="${questions}" var="question" varStatus="status">
 		<div>
@@ -31,16 +35,25 @@
 		
 	</div>
 	<br>
+    <c:set var = "countAnswer" scope = "session" value = "0"/>
 		<c:forEach items="${questions}" var="question" varStatus="status">
+
 				<div class="wpProQuiz_question_text">
 					<p>${status.index + 1}.${question.content}</p>
 				</div>
 				<ul class="wpProQuiz_questionList" data-question_id="4" data-type="single">
 					<li class="wpProQuiz_questionListItem" data-pos="0">
 						<c:forEach items="${question.answers}" var="answer" varStatus="stt">
+                        <input type="hidden" name ="answers[${countAnswer }].prefix" value="${answer.prefix}"/>
+                        <input type="hidden" name ="answers[${countAnswer }].content" value="${answer.content}"/>
+                        <input type="hidden" name ="answers[${countAnswer }].istrue"  value="true" class="answer_${stt.index }"/>
+                        <input type="hidden" name ="answers[${countAnswer }].isStudent"  value="true" />
+                        <input type="hidden" name ="answers[${countAnswer }].question.id"  value="${question.id }"/>
+                        <label>${answer.prefix}</label>
 						<label style="display: block;">
-							<input class="wpProQuiz_questionInput" type="radio" name="questions[${status.index }].result[${stt.index }].answer.istrue" value="${answer.id}">${answer.content} 
+							<input class="wpProQuiz_questionInput" type="radio" name="questions[${status.index }]" value="${answer.id}">${answer.content} 
 						</label>
+                        <c:set var = "countAnswer" scope = "session" value = "${countAnswer +1 }"/>
 					</c:forEach>
 					</li>
 				</ul>		

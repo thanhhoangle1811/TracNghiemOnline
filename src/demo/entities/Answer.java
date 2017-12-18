@@ -26,7 +26,9 @@ public class Answer implements java.io.Serializable {
 	private Question question;
 	private String content;
 	private boolean istrue;
+	private boolean isStudent;
 	private List<Result> results = new ArrayList<Result>(0);
+	private String prefix;
 
 	public Answer() {
 	}
@@ -66,7 +68,16 @@ public class Answer implements java.io.Serializable {
 		this.question = question;
 	}
 
-	@Column(name = "content", nullable = false, length = 1000)
+	@Column(name="prefix", nullable = false, length = 1)
+	public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    @Column(name = "content", nullable = false, length = 1000)
 	public String getContent() {
 		return this.content;
 	}
@@ -75,7 +86,16 @@ public class Answer implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "istrue", nullable = false)
+	@Column(name = "isStudent", nullable = false)
+	public boolean isIsStudent() {
+        return isStudent;
+    }
+
+    public void setIsStudent(boolean isStudent) {
+        this.isStudent = isStudent;
+    }
+
+    @Column(name = "istrue", nullable = false)
 	public boolean isIstrue() {
 		return this.istrue;
 	}

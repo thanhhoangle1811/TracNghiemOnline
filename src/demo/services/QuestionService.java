@@ -2,6 +2,7 @@ package demo.services;
 
 import java.util.List;
 
+import demo.dto.ExamDTO;
 import demo.entities.Category;
 import demo.entities.Question;
 
@@ -12,4 +13,6 @@ public interface QuestionService {
     public boolean updateQuestion(Question question);
 
 	public Question findById(int questionId);
+	public List<Question> findQuestionByExamid(int examId);
+	public void storeAnswerStu(ExamDTO dto);
 }
