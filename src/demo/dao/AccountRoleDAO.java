@@ -5,6 +5,6 @@ import java.util.*;
 
 public interface AccountRoleDAO {
 	
-	public void create(AccountRole userRole);
+	//public void create(AccountRole userRole);
 	
 }
