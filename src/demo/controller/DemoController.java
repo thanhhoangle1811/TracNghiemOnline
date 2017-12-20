@@ -7,7 +7,11 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import demo.entities.Account;
+import demo.entities.AccountRole;
 import demo.entities.Category;
+import demo.entities.Question;
+import demo.entities.Role;
 import demo.services.*;
 
 @Controller
@@ -15,12 +19,23 @@ import demo.services.*;
 public class DemoController {
 
 	@Autowired
-	private CategoryService categoryService;
+	private QuestionService questionService;
+	@Autowired
+    private AccountService accountService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
-		List<Category> list = categoryService.findAll();
-		return "index";
+//	    List<Question> questions = questionService.findQuestionByExamid(1);
+	    AccountRole accountRole = new AccountRole();
+	    Role role = new Role();
+	    role.setId(1);
+	    Account account = new Account();
+	    account.setId(1);
+	    accountRole.setEnable(true);
+	    accountRole.setAccount(account);
+	    accountRole.setRole(role);
+	    accountService.setAccountRole(accountRole);
+		return "demo.index";
 	}
 	
 	

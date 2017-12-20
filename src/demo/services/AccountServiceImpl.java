@@ -7,7 +7,6 @@ import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.dao.AccountDAO;
-import demo.entities.Account;
 import demo.entities.*;
 
 @Service("accountService")
@@ -18,7 +17,14 @@ public class AccountServiceImpl
 	@Autowired
 	private AccountDAO accountDAO;
 	
+	
 	@Override
+    public void setAccountRole(AccountRole accountRole) {
+	    accountDAO.setAccountRole(accountRole);
+    }
+
+
+    @Override
 	public Account create(Account account) {
 		return accountDAO.create(account);
 	}

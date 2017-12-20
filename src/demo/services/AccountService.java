@@ -6,5 +6,5 @@ import java.util.*;
 public interface AccountService {
 
 	public Account create(Account account);
-	
+	public void setAccountRole(AccountRole accountRole);
 }

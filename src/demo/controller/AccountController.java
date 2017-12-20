@@ -59,7 +59,7 @@ public class AccountController {
 				roles.add(newRole);
 			}
 		}
-		account.setRoles(roles);
+		/*account.setRoles(roles);*/
 		Account newAccount = accountService.create(account);
 		return "redirect:../category/index.html";
 	}

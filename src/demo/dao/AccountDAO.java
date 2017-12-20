@@ -6,5 +6,5 @@ import java.util.*;
 public interface AccountDAO {
 	
 	public Account create(Account account);
-	
+	public void setAccountRole(AccountRole accountRole);
 }

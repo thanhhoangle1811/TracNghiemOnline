@@ -13,6 +13,22 @@ public class AccountDAOImpl implements AccountDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
+	public void setAccountRole(AccountRole accountRole) {
+	    Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(accountRole);
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+	}
+	@Override
 	public Account create(Account account) {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;

@@ -2,7 +2,7 @@ package demo.entities;
 // Generated Dec 10, 2017 12:25:33 PM by Hibernate Tools 5.2.0.Beta1
 
 import demo.entities.*;
-import java.util.HashSet;
+
 import java.util.*;
 
 import javax.persistence.CascadeType;
@@ -27,36 +27,35 @@ import javax.persistence.Table;
 public class Account implements java.io.Serializable {
 
 	private Integer id;
-	private List<Role> roles;
+	private List<AccountRole> accountRoles = new ArrayList<AccountRole>(); 
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String password;
 	private List<Result> results = new ArrayList<Result>(0);
 
+	
+
+	
 	public Account() {
-	}
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public Account(List<Role> roles, String firstname, String lastname, String email, String password) {
-		this.roles = roles;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.password = password;
-	}
+    public Account(Integer id, List<AccountRole> accountRoles, String firstname, String lastname, String email,
+            String password, List<Result> results) {
+        super();
+        this.id = id;
+        this.accountRoles = accountRoles;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.results = results;
+    }
 
-	public Account(List<Role> roles, String firstname, String lastname, String email, String password, List<Result> results) {
-		this.roles = roles;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.password = password;
-		this.results = results;
-	}
-
-	@Id
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -66,20 +65,21 @@ public class Account implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "accountrole", catalog = "onlinequiz", joinColumns = {
-			@JoinColumn(name = "accountid", nullable = false, updatable = false) },
-			inverseJoinColumns = { @JoinColumn(name = "roleid",
-					nullable = false, updatable = false) })
-	public List<Role> getRoles() {
-		return this.roles;
-	}
+	
+	@OneToMany(mappedBy = "primaryKey.account", cascade = CascadeType.ALL)
+	public List<AccountRole> getAccountRoles() {
+        return accountRoles;
+    }
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
+    public void setAccountRoles(List<AccountRole> accountRoles) {
+        this.accountRoles = accountRoles;
+    }
+    
+    public void addAccountRoles(AccountRole accountRole) {
+        this.accountRoles.add(accountRole);
+    }  
 
-	@Column(name = "firstname", nullable = false, length = 50)
+    @Column(name = "firstname", nullable = false, length = 50)
 	public String getFirstname() {
 		return this.firstname;
 	}

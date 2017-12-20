@@ -3,7 +3,8 @@ package demo.entities;
 
 import demo.entities.*;
 import java.util.*;
-import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,21 +24,21 @@ public class Role implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
-	private List<Account> accounts = new ArrayList<Account>(0);
-
+	private List<AccountRole> accountRoles = new ArrayList<AccountRole>();
+	
 	public Role() {
-	}
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public Role(String name) {
-		this.name = name;
-	}
+    public Role(Integer id, String name, List<AccountRole> accountRoles) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.accountRoles = accountRoles;
+    }
 
-	public Role(String name, List<Account> accounts) {
-		this.name = name;
-		this.accounts = accounts;
-	}
-
-	@Id
+    @Id
 	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "id", unique = true, nullable = false)
@@ -58,13 +59,19 @@ public class Role implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-	public List<Account> getAccounts() {
-		return this.accounts;
-	}
+	@OneToMany(mappedBy ="primaryKey.role", cascade = CascadeType.ALL )
+    public List<AccountRole> getAccountRoles() {
+        return accountRoles;
+    }
 
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
+    public void setAccountRoles(List<AccountRole> accountRoles) {
+        this.accountRoles = accountRoles;
+    }
+    public void addAccountRole(AccountRole accountRole) {
+        this.accountRoles.add(accountRole);
+    }
+    
+
+	
 
 }
