@@ -12,13 +12,36 @@ public class AccountDAOImpl implements AccountDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
 	@Override
+    public Account getAccountById(int id) {
+        // TODO Auto-generated method stub
+	    Account account = new Account();
+	    Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery(" FROM Account where id = :id");
+            query.setParameter("id", id);
+            account = (Account) query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+	    return account;
+        
+    }
+    @Override
 	public void setAccountRole(AccountRole accountRole) {
 	    Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(accountRole);
+            session.saveOrUpdate(accountRole);
             transaction.commit();
         } catch (Exception e) {
             if(transaction != null) {

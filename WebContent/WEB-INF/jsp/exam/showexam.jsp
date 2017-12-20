@@ -2,28 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<s:form method="post" commandName="examDto"
+<s:form class="exam-form" method="post" commandName="examDto"
 	action="${pageContext.request.contextPath }/exam/showexam.html">
     <input type="hidden" name="exam.id" value="${examId}"/>
     <input type="hidden" name="account.id" value="1"/>
+    <input type = hidden id = "complete" name = "complete" value = "false"/>
     
 	<div>${exam.name}</div>
-    
-	
-	<%-- <c:forEach items="${questions}" var="question" varStatus="status">
-		<div>
-			<span>${status.index + 1}.</span>
-			<span>${question.content}</span>
-			<div style="margin-left: 30px;">
-				<c:forEach items="${question.answers}" var="answer" varStatus="stt">
-					<label style="display: block;">
-				      <input type="radio" name="${question.id}" value="${answer.id}">${answer.content} 
-				    </label>
-				</c:forEach>
-			</div>
-		</div>
-		
-	</c:forEach> --%>
 	<div class="top_panel_title">
 		<div class="top_panel_title_inner">
 			<h1 class="page_title">Tests and Quizzes</h1>
@@ -60,12 +45,17 @@
 		</c:forEach>
 	</div>
 	<br></br>
-	<input type="submit" id ="submit" />
+	<input type="button" id="buttonSubmitExam" value = "SUBMIT HERE" />
 </s:form>
 <script>
 var a = $('.wpProQuiz_question_text').find('input');
 $(document).ready(function(){
-    
+    $(window).bind('beforeunload', function(e){
+        return "A";
+	});
+    $('#buttonSubmitExam').on("click",function(){
+    	$("form.exam-form").submit();
+    });
     a.val("1000:00");
     startTimer();
     $('.wpProQuiz_questionInput').on("change",function(){
@@ -91,8 +81,9 @@ function startTimer() {
     var m = timeArray[0];
     var s = checkSecond((timeArray[1] - 1));
     if(s==59){m=m-1}
-    if(m<0){alert('timer completed')}
-    
+    if(m<0){
+    	$("form.exam-form").submit();
+	}
     a.val(m + ":" + s);
     setTimeout(startTimer, 1000);
   }
@@ -102,4 +93,5 @@ function startTimer() {
     if (sec < 0) {sec = "59"};
     return sec;
   }
+ 
 </script>

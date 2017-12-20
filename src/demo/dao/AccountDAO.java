@@ -7,4 +7,5 @@ public interface AccountDAO {
 	
 	public Account create(Account account);
 	public void setAccountRole(AccountRole accountRole);
+	public Account getAccountById(int id);
 }

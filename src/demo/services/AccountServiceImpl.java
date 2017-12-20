@@ -25,6 +25,14 @@ public class AccountServiceImpl
 
 
     @Override
+    public Account getAccountById(int id) {
+        // TODO Auto-generated method stub
+        return accountDAO.getAccountById(id);
+        
+    }
+
+
+    @Override
 	public Account create(Account account) {
 		return accountDAO.create(account);
 	}
