@@ -23,38 +23,23 @@ public class Result implements java.io.Serializable {
 	private Account account;
 	private Answer answer;
 	private Exam exam;
-	private String isTrue;
 	private Question question;
 
 	public Result() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-
-
-	public Result(Integer id, Account account, Answer answer, Exam exam, String isTrue, Question question) {
+	public Result(Integer id, Account account, Answer answer, Exam exam, Question question) {
 		super();
 		this.id = id;
 		this.account = account;
 		this.answer = answer;
 		this.exam = exam;
-		this.isTrue = isTrue;
 		this.question = question;
 	}
 
-
-
-	public String getIsTrue() {
-		return isTrue;
-	}
-
-
-
-	public void setIsTrue(String isTrue) {
-		this.isTrue = isTrue;
-	}
-
-
-
+	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 

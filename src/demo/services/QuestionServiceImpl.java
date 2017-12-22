@@ -1,5 +1,6 @@
 package demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,16 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	@Override
     public void storeAnswerStu(ExamDTO dto) {
-	    Result result = new Result();
+		List<Result> results = new ArrayList<Result>();
+		for(int i =0; i< dto.getResultDTOs().size();i++){
+			if(dto.getResultDTOs().get(i).getIsTrue() != null && dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase("true")){
+				results.add(dto.getResultDTOs().get(i).getResult());
+			}
+		}
+		for(int i = 0;i < results.size();i++){
+			resultDAO.storeResult(results.get(i));
+		}
+	   /* Result result = new Result();
 	    for (Answer ans: dto.getAnswers()) {
 	        int ansID = answerDAO.storeAnswer(ans);
 	        if(ansID > 0) {
@@ -42,7 +52,7 @@ public class QuestionServiceImpl implements QuestionService{
 	            result.setQuestion(ans.getQuestion());
 	            resultDAO.storeResult(result);
 	        }
-        }
+        }*/
     }
     @Override
 	public List<Question> findQuestionByExamid(int examId){

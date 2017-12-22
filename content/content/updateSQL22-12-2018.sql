@@ -15,6 +15,7 @@ ALTER TABLE question
 
 INSERT INTO `role` (`id`, `name`) VALUES (NULL, 'ADMIN');
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`) VALUES (NULL, 'Le', 'Hoang', 'lehoang@gmail.com', '123456');
+
 INSERT INTO `examquestion` (`examid`, `questionid`) VALUES ('1', '4');
 INSERT INTO `examquestion` (`examid`, `questionid`) VALUES ('1', '8');
 INSERT INTO `examquestion` (`examid`, `questionid`) VALUES ('1', '9');

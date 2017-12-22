@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ExamDTO {
     private Exam exam;
-    private List<Result> results;
+    private List<ResultDTO> resultDTOs;
     private List<Answer> answers;
     private Account account;
     private boolean complete;
@@ -36,12 +36,13 @@ public class ExamDTO {
     public void setExam(Exam exam) {
         this.exam = exam;
     }
-    public List<Result> getResults() {
-        return results;
-    }
-    public void setResults(List<Result> results) {
-        this.results = results;
-    }
+	public List<ResultDTO> getResultDTOs() {
+		return resultDTOs;
+	}
+	public void setResultDTOs(List<ResultDTO> resultDTOs) {
+		this.resultDTOs = resultDTOs;
+	}
+    
     
     
 }

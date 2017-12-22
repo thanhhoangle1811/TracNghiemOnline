@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <s:form class="exam-form" method="post" commandName="examDto"
 	action="${pageContext.request.contextPath }/exam/showexam.html">
-    <input type="hidden" name="exam.id" value="${examId}"/>
+    <input type="hidden" name="exam.id" value="${exam.id}"/>
     <input type="hidden" name="account.id" value="1"/>
     <input type = hidden id = "complete" name = "complete" value = "false"/>
     
@@ -16,7 +16,7 @@
 	</div>                         
 	<div class="wpb_column vc_column_container vc_col-sm-12" style="text-align : left;">
 	<div class="wpProQuiz_question_text" style="color:#1ebeb4;">
-		Time limit: <input type="text" style="width:150px;" value="05:00">
+		Time limit: <input type="text" style="width:150px;" value="${time }">
 		
 	</div>
 	<br>
@@ -29,11 +29,11 @@
 				<ul class="wpProQuiz_questionList" data-question_id="4" data-type="single">
 					<li class="wpProQuiz_questionListItem" data-pos="0">
 						<c:forEach items="${question.answers}" var="answer" varStatus="stt">
-                        <input type="hidden" name ="answers[${countAnswer }].prefix" value="${answer.prefix}"/>
-                        <input type="hidden" name ="answers[${countAnswer }].content" value="${answer.content}"/>
-                        <input type="hidden" name ="answers[${countAnswer }].istrue"  value="false" class="answer_${countAnswer } question_${question.id }"/>
-                        <input type="hidden" name ="answers[${countAnswer }].isStudent"  value="true" />
-                        <input type="hidden" name ="answers[${countAnswer }].question.id"  value="${question.id }"/>
+                        <input type="hidden" name ="resultDTOs[${countAnswer }].isTrue"  value="false" class="answer_${countAnswer } question_${question.id }"/>
+                        <input type="hidden" name ="resultDTOs[${countAnswer }].result.answer.id"  value="${answer.id}"/>
+                        <input type="hidden" name ="resultDTOs[${countAnswer }].result.question.id"  value="${question.id }"/>
+                        <input type="hidden" name ="resultDTOs[${countAnswer }].result.exam.id"  value="${exam.id }"/>
+                        <input type="hidden" name ="resultDTOs[${countAnswer }].result.account.id"  value="${accountId }"/>
                         <label>${answer.prefix}</label>
 						<label style="display: block;">
 							<input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="radio" name="questions[${status.index }]" >${answer.content} 
@@ -56,7 +56,6 @@ $(document).ready(function(){
     $('#buttonSubmitExam').on("click",function(){
     	$("form.exam-form").submit();
     });
-    a.val("1000:00");
     startTimer();
     $('.wpProQuiz_questionInput').on("change",function(){
     	var questionId = $(this).attr('questionid');

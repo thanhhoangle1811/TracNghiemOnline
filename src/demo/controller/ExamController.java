@@ -2,6 +2,9 @@ package demo.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -71,37 +74,39 @@ public class ExamController {
     @RequestMapping(value = { "/showexam.html" }, params = { "id" }, method = RequestMethod.GET)
     public String showexam(@RequestParam(value = "id") int examId, ModelMap modelMap) {
         Exam exam = examService.findById(examId);
+        Date date = exam.getTime();
+        DateFormat formatter = new SimpleDateFormat("mm:ss");
+        
+        String time =formatter.format(date); 
+        
         List<Question> list = filterQuestion(exam);
         modelMap.put("questions", list);
-        modelMap.put("examId", examId);
+        modelMap.put("exam", exam);
+        modelMap.put("time", time);
+        modelMap.put("accountId", 1);
         return "exam.showexam";
     }
     private List<Question> filterQuestion(Exam exam){
         List<Question> list =exam.getQuestions();
-        for (int i = 0;i < list.size();i++) {
+        /*for (int i = 0;i < list.size();i++) {
             List<Answer> ansTemp = new ArrayList<Answer>();
             for (Answer answer : list.get(i).getAnswers()) {
-                if(!answer.isIsStudent()) {
-                    ansTemp.add(answer);
-                }
+            	ansTemp.add(answer);
             }
             list.get(i).setAnswers(ansTemp);
-        }
+        }*/
         Collections.shuffle(list);
         return list;
     }
     @RequestMapping(value = { "/showexam.html" }, method = RequestMethod.POST)
     public String showexam(@ModelAttribute("examDto") ExamDTO examDTO, ModelMap modelMap) {
-        /*
-         * boolean flag = questionService.createQuestion(question); if(flag){ return
-         * "exam.create"; }else{ return "demo.index"; }
-         */
+       
         
-        if(examDTO.isComplete()) {
+        /*if(examDTO.isComplete()) {*/
             questionService.storeAnswerStu(examDTO);    
-        }else {
+        /*}else {
             return "demo.index";
-        }
+        }*/
         return "exam.create";
     }
     
