@@ -5,6 +5,8 @@ import demo.entities.*;
 import java.util.Date;
 import java.util.*;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,8 +33,8 @@ public class Exam implements java.io.Serializable {
 	private Category category;
 	private String name;
 	private Date time;
-	private List<Result> results = new ArrayList<Result>(0);
-	private List<Question> questions = new ArrayList<Question>(0);
+	private List<Result> results = new ArrayList<Result>();
+	private List<Question> questions = new ArrayList<Question>();
 
 	public Exam() {
 	}
@@ -99,7 +103,11 @@ public class Exam implements java.io.Serializable {
 		this.results = results;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "exam")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "examquestion", catalog = "onlinequiz", joinColumns = {
+			@JoinColumn(name = "examid", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "questionid",
+					nullable = false, updatable = false) })
 	public List<Question> getQuestions() {
 		return this.questions;
 	}

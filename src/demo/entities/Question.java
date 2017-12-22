@@ -2,7 +2,7 @@ package demo.entities;
 // Generated Dec 10, 2017 12:25:33 PM by Hibernate Tools 5.2.0.Beta1
 
 import demo.entities.*;
-import java.util.ArrayList;
+
 import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,30 +24,30 @@ import javax.persistence.Table;
 public class Question implements java.io.Serializable {
 
 	private Integer id;
-	private Exam exam;
 	private Questiontype questiontype;
 	private String content;
 	private float grade;
 	private List<Answer> answers = new ArrayList<Answer>(0);
 	private List<Result> results = new ArrayList<Result>(0);
+	private List<Exam> exams = new ArrayList<Exam>();
+
+	
 
 	public Question() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Question(Questiontype questiontype, String content, float grade) {
-		this.questiontype = questiontype;
-		this.content = content;
-		this.grade = grade;
-	}
-
-	public Question(Exam exam, Questiontype questiontype, String content, float grade, List<Answer> answers,
-			List<Result> results) {
-		this.exam = exam;
+	public Question(Integer id, Questiontype questiontype, String content, float grade, List<Answer> answers,
+			List<Result> results, List<Exam> exams) {
+		super();
+		this.id = id;
 		this.questiontype = questiontype;
 		this.content = content;
 		this.grade = grade;
 		this.answers = answers;
 		this.results = results;
+		this.exams = exams;
 	}
 
 	@Id
@@ -60,15 +61,14 @@ public class Question implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "examid")
-	public Exam getExam() {
-		return this.exam;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
+	public List<Exam> getExams() {
+		return exams;
 	}
 
-	public void setExam(Exam exam) {
-		this.exam = exam;
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

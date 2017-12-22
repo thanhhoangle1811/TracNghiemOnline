@@ -26,7 +26,7 @@ public class Answer implements java.io.Serializable {
 	private Question question;
 	private String content;
 	private boolean istrue;
-	private boolean isStudent;
+	
 	private List<Result> results = new ArrayList<Result>(0);
 	private String prefix;
 
@@ -85,15 +85,6 @@ public class Answer implements java.io.Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	@Column(name = "isStudent", nullable = false)
-	public boolean isIsStudent() {
-        return isStudent;
-    }
-
-    public void setIsStudent(boolean isStudent) {
-        this.isStudent = isStudent;
-    }
 
     @Column(name = "istrue", nullable = false)
 	public boolean isIstrue() {
