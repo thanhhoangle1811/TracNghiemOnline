@@ -19,9 +19,9 @@ public class AccountRoleServiceImpl
 	@Autowired
 	private AccountRoleDAO accountRoleDAO;
 	
-	//@Override
-	//public void create(AccountRole accountRole) {
-	//	accountRoleDAO.create(accountRole);
-	//}
+	@Override
+	public void create(AccountRole accountRole) {
+		accountRoleDAO.create(accountRole);
+	}
 
 }

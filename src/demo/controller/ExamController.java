@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import demo.dao.QuestionDAO;
 import demo.dto.ExamDTO;
+import demo.dto.ResultDTO;
+import demo.dto.ResultDTOs;
 import demo.entities.*;
 import demo.services.*;
 
@@ -100,14 +102,85 @@ public class ExamController {
     }
     @RequestMapping(value = { "/showexam.html" }, method = RequestMethod.POST)
     public String showexam(@ModelAttribute("examDto") ExamDTO examDTO, ModelMap modelMap) {
-       
+    	 questionService.storeAnswerStu(examDTO);  
+       /*
+    	//find exam
+    	String examName = examDTO.getExam().getName();
+    	//find how many question, how many right answers
+    	List<Question> questionList = examDTO.getExam().getQuestions();
+    	ResultDTOs resultList =  new ResultDTOs(examDTO.getResultDTOs());
+    	int totalQuestion = questionList.size();
+    	int totalRightAnswer = 0;
+    	float totalGradeOfExam = 0;
+    	float totalGradeOfUser = 0;
+    	for(int i = 0; i < totalQuestion; i++){
+    		Question currentQuestion = questionList.get(i);
+    		totalGradeOfExam += currentQuestion.getGrade();
+    		Result currentResult = resultList.getResultByQuestionId(currentQuestion.getId());
+    		if(currentQuestion.getQuestiontype().getId() == 1){
+    			List<Answer> rightAnswers =  currentQuestion.getAnswers();
+    			if(rightAnswers.size() == 1 && rightAnswers.get(0).getId() == currentResult.getAnswer().getId()){
+    				totalRightAnswer++;
+    				totalGradeOfUser += currentQuestion.getGrade();
+    			}
+    		}
+    		else{
+    			
+    		}
+    		modelMap.put("examName", examName);
+            modelMap.put("totalQuestion", totalQuestion);
+            modelMap.put("totalRightAnswer", totalRightAnswer);
+            modelMap.put("totalGradeOfExam", totalGradeOfExam);
+            modelMap.put("totalGradeOfUser", totalGradeOfUser);
+            return "exam.showexamresult";
+    	}
+    	//find total grade for the exam
+    	//find total grade user achieve, percentage
+    	//find the time user used
+    	*/
+    	String examName = examDTO.getExam().getName();
+    	List<Question> questionList = examService.findQuestionsById(examDTO.getExam().getId());
+    	ResultDTOs resultList =  new ResultDTOs(examDTO.getResultDTOs());
+    	int totalQuestion = questionList.size();
+    	int totalRightAnswer = 0;
+    	float totalGradeOfExam = 0;
+    	float totalGradeOfUser = 0;
+    	for(int i = 0; i < totalQuestion; i++){
+    		Question currentQuestion = questionList.get(i);
+    		totalGradeOfExam += currentQuestion.getGrade();
+    		
+    		Result currentResult = resultList.getResultByQuestionId(currentQuestion.getId());
+    		if(currentQuestion.getQuestiontype().getId() == 1){
+    			Answer rightAnswer = null;
+    			List<Answer> answers =  currentQuestion.getAnswers();
+    			for(int j = 0; j < answers.size(); j++){
+    				if(answers.get(j).isIstrue()){
+    					rightAnswer = answers.get(j);
+    				}
+    			}
+    			if(rightAnswer != null && rightAnswer.getId() == currentResult.getAnswer().getId()){
+    				totalRightAnswer++;
+    				totalGradeOfUser += currentQuestion.getGrade();
+    			}
+    		}
+    		else{
+    			
+    		}
+    	}
+
+		modelMap.put("examName", examName);
+        modelMap.put("totalQuestion", totalQuestion);
+        modelMap.put("totalRightAnswer", totalRightAnswer);
+        modelMap.put("totalGradeOfExam", totalGradeOfExam);
+        modelMap.put("totalGradeOfUser", totalGradeOfUser);
+        return "exam.showexamresult";
         
         /*if(examDTO.isComplete()) {*/
-            questionService.storeAnswerStu(examDTO);    
+        //     
         /*}else {
             return "demo.index";
         }*/
-        return "exam.create";
+        //return "exam.showexamresult";
     }
     
     

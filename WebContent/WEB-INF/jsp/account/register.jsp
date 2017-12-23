@@ -31,30 +31,10 @@
 			</td>
 		</tr>
 		<tr>
-			<td valign="top">Roles</td>
-			<td>
-				<c:forEach var="role" items="${roles }">
-					<input type="checkbox" name="roles" 
-					value="${role.id }"> ${role.name }
-					<br>
-				</c:forEach>
-			</td>
-		</tr>
-		<tr>
 			<td>&nbsp;</td>
 			<td>
 				<input type="submit" value="Save"/>
 			</td>
 		</tr>
-		<!--
-		<tr>
-			<td>Enable</td>
-			<td>
-				<s:checkbox path="enabled" value="1"/>
-			</td>
-		</tr>
-		-->
-	</table>
-	
-	<input type="submit" value="Save" style="width:30px;height:50px; background: blue;"/>
+	</table>	
 </s:form>

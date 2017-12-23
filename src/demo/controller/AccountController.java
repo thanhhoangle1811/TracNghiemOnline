@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import demo.entities.Account;
+import demo.entities.AccountRole;
 import demo.entities.Category;
 import demo.entities.Exam;
 import demo.entities.Role;
@@ -46,21 +47,15 @@ public class AccountController {
 			@ModelAttribute("account") Account account, 
 			HttpServletRequest request) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		List<Role> roles = new ArrayList<Role>();
-		String []rolesId = request.getParameterValues("roles");
-		if(rolesId != null && rolesId.length != 0) {
-			for(String id : rolesId) {
-				//AccountRole accountRole = new AccountRole();
-				//accountRole.setEnable(true);
-				//accountRole.setId(new UserRoleId(
-				//		newAccount.getId(), Integer.parseInt(id)));
-				//accountRoleService.create(accountRole);
-				Role newRole = roleService.find(Integer.parseInt(id));
-				roles.add(newRole);
-			}
-		}
-		/*account.setRoles(roles);*/
+		account.setEnabled(true);
+		//List<Role> roles = new ArrayList<Role>();
 		Account newAccount = accountService.create(account);
+		Role newRole = roleService.find(2);
+		AccountRole accountRole = new AccountRole();
+		accountRole.setEnable(true);
+		accountRole.setAccount(newAccount);
+		accountRole.setRole(newRole);
+		accountRoleService.create(accountRole);
 		return "redirect:../category/index.html";
 	}
 }

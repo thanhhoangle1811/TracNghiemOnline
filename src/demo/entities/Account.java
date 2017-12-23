@@ -33,28 +33,39 @@ public class Account implements java.io.Serializable {
 	private String email;
 	private String password;
 	private List<Result> results = new ArrayList<Result>(0);
-
+	private boolean enabled;
 	
-
+	
 	
 	public Account() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Account(Integer id, List<AccountRole> accountRoles, String firstname, String lastname, String email,
-            String password, List<Result> results) {
-        super();
-        this.id = id;
-        this.accountRoles = accountRoles;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-        this.results = results;
-    }
+	public Account(Integer id, List<AccountRole> accountRoles, String firstname, String lastname, String email,
+			String password, List<Result> results, boolean enabled) {
+		super();
+		this.id = id;
+		this.accountRoles = accountRoles;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
+		this.results = results;
+		this.enabled = enabled;
+	}
 
-    @Id
+	
+	 @Column(name="enabled",nullable = false, length = 1)
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {

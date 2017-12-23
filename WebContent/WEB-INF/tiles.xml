@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="demo.index" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
@@ -49,6 +49,18 @@
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
     	<put-attribute name="content" 
     		value="/WEB-INF/jsp/account/register.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="exam.showexamresult" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/exam/showexamresult.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="general.403" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/general/403.jsp"></put-attribute>
     </definition>
     
     <!-- hieu Hieu viet  */ -->

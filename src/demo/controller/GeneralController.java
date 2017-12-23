@@ -25,6 +25,11 @@ public class GeneralController {
 		return "redirect:general.login";
 	}
 
+	/*@RequestMapping(value = "/login.html", method = RequestMethod.GET)
+	public String login() {
+		return "general.login";
+	}*/
+	
 	@RequestMapping(value = "/login.html", method = RequestMethod.GET)
 	public String login(
 			@RequestParam(value = "error", required = false) String error,

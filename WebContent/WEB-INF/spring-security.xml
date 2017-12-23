@@ -7,16 +7,15 @@
 
 	<!-- enable use-expressions -->
 	<http auto-config="true">
-		<intercept-url pattern="/superadmin**" access="ROLE_SUPER_ADMIN" />
-		<intercept-url pattern="/admin**" access="ROLE_SUPER_ADMIN, ROLE_ADMIN" />
-		<intercept-url pattern="/employee**"
-			access="ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_EMPLOYEE" />
+		<intercept-url pattern="/admin**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/user**"
+			access="ROLE_ADMIN, ROLE_USER" />
 			
-		<access-denied-handler error-page="/main/403.html" />
+		<access-denied-handler error-page="/general/403.html" />
 		<form-login login-page="/general/login.html" 
-			default-target-url="/general/welcome.html"
+			default-target-url="/category/index.html"
 			authentication-failure-url="/general/login.html?error"
-			username-parameter="username" 
+			username-parameter="email" 
 			password-parameter="password" />
 		<logout logout-success-url="/general/login.html?logout" />
 		
@@ -32,14 +31,14 @@
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="
-		     SELECT USERNAME, PASSWORD, CASE ENABLED WHEN 1 THEN 'true' ELSE 'false' END 'ENABLED' 
-		     FROM USERS 
-		     WHERE USERNAME=?;"
+		     SELECT EMAIL, PASSWORD, CASE ENABLED WHEN 1 THEN 'true' ELSE 'false' END 'ENABLED' 
+		     FROM ACCOUNT 
+		     WHERE EMAIL=?;"
 				authorities-by-username-query="
-		    SELECT u.USERNAME, r.NAME 
-			FROM USERS u, USER_ROLE ur, ROLES r
-			WHERE u.ID = ur.USERID and r.ID=ur.ROLEID
-			AND u.USERNAME=? and ur.ENABLE=1;" />
+		    SELECT u.EMAIL, r.NAME 
+			FROM ACCOUNT u, ACCOUNTROLE ur, ROLE r
+			WHERE u.ID = ur.ACCOUNTID and r.ID=ur.ROLEID
+			AND u.EMAIL=? and ur.ENABLE=1;" />
 			
 			<password-encoder ref="passwordEncoder" />
 			

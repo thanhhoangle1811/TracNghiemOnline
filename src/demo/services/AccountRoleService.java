@@ -5,6 +5,6 @@ import java.util.*;
 
 public interface AccountRoleService {
 
-	//public void create(AccountRole accountRole);
+	public void create(AccountRole accountRole);
 	
 }

@@ -12,14 +12,13 @@ public class AccountRoleDAOImpl implements AccountRoleDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	//@Override
-	//public void create(AccountRole accountRole) {
-	public void create() {
+	@Override
+	public void create(AccountRole accountRole) {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			//session.save(accountRole);
+			session.save(accountRole);
 			transaction.commit();
 		} catch (Exception e) {
 			if(transaction != null) {
