@@ -158,7 +158,7 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 </li>
 <li id="menu-item-2169" class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Education</span></a>
 <ul class="sub-menu">
-	<li id="menu-item-2346" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2346"><a href="category.html"><span>Category</span></a></li>
+	<li id="menu-item-2346" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2346"><a href="${pageContext.request.contextPath }/category/index.html"><span>Category</span></a></li>
 	<li id="menu-item-2344" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2344"><a href="tests-and-quizzes.html"><span>Tests and Quizzes</span></a></li>
 </ul>
 </li>
