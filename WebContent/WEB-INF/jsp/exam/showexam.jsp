@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
@@ -29,14 +30,23 @@
 				<ul class="wpProQuiz_questionList" data-question_id="4" data-type="single">
 					<li class="wpProQuiz_questionListItem" data-pos="0">
 						<c:forEach items="${question.answers}" var="answer" varStatus="stt">
-                        <input type="hidden" name ="resultDTOs[${countAnswer }].isTrue"  value="false" class="answer_${countAnswer } question_${question.id }"/>
+                        <c:if test="${question.questiontype.name=='radio' }" >
+                            <input type="hidden" name ="resultDTOs[${countAnswer }].isTrue"  value="false" class="answer_${countAnswer } question_${question.id }"/>
+                        </c:if>
                         <input type="hidden" name ="resultDTOs[${countAnswer }].result.answer.id"  value="${answer.id}"/>
                         <input type="hidden" name ="resultDTOs[${countAnswer }].result.question.id"  value="${question.id }"/>
                         <input type="hidden" name ="resultDTOs[${countAnswer }].result.exam.id"  value="${exam.id }"/>
                         <input type="hidden" name ="resultDTOs[${countAnswer }].result.account.id"  value="${accountId }"/>
                         <label>${answer.prefix}</label>
 						<label style="display: block;">
-							<input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="radio" name="questions[${status.index }]" >${answer.content} 
+                        <c:choose>
+                            <c:when test="${question.questiontype.name=='radio' }">
+                                <input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="radio" name="questions[${status.index }]" >${answer.content}
+                            </c:when>
+                            <c:otherwise>
+                                <input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="checkbox" name="resultDTOs[${countAnswer }].isTrue" >${answer.content}
+                            </c:otherwise>
+                        </c:choose>
 						</label>
                         <c:set var = "countAnswer" scope = "session" value = "${countAnswer +1 }"/>
 					</c:forEach>

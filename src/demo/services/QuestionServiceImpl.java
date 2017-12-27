@@ -34,7 +34,7 @@ public class QuestionServiceImpl implements QuestionService{
     public void storeAnswerStu(ExamDTO dto) {
 		List<Result> results = new ArrayList<Result>();
 		for(int i =0; i< dto.getResultDTOs().size();i++){
-			if(dto.getResultDTOs().get(i).getIsTrue() != null && dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase("true")){
+			if(dto.getResultDTOs().get(i).getIsTrue() != null && (dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase("true") || dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase("on"))){
 				results.add(dto.getResultDTOs().get(i).getResult());
 			}
 		}

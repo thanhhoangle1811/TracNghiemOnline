@@ -105,8 +105,13 @@ public class QuestionDAOImpl implements QuestionDAO{
 			List<Answer> answers = question.getAnswers();
 			if(answers != null && answers.size() != 0){
 				for (int i =0; i < answers.size();i++) {
-					answers.get(i).setQuestion(question);
-					session.save(answers.get(i));
+				    if(answers.get(i).getContent() != null && !answers.get(i).getContent().equalsIgnoreCase("") ) {
+				        //begin char a ASCII
+				        char chara = (char) (i+97);
+				        answers.get(i).setPrefix(String.valueOf(chara));
+				        answers.get(i).setQuestion(question);
+	                    session.save(answers.get(i));    
+				    }
 				}
 			}
 			transaction.commit();
@@ -125,7 +130,6 @@ public class QuestionDAOImpl implements QuestionDAO{
 
 	@Override
 	public List<Question> findByExam(int examId) {
-		// TODO Auto-generated method stub
 		List<Question> questions = null;
 		Session session = null;
 		Transaction transaction = null;
