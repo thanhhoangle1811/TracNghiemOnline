@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<session-factory name="TEST">
-		<property name="hibernate.enable_lazy_load_no_trans">true</property>
-		<property name="hibernate.current_session_context_class">thread</property>
+    <session-factory name="TEST">
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="show_sql">true</property>
-		<mapping class="demo.entities.Account" />
-		<mapping class="demo.entities.Answer" />
-		<mapping class="demo.entities.Category" />
-		<mapping class="demo.entities.Exam" />
-		<mapping class="demo.entities.Question" />
-		<mapping class="demo.entities.Questiontype" />
-		<mapping class="demo.entities.Result" />
-		<mapping class="demo.entities.Role" />
+        <mapping class="demo.entities.Account" />
+        <mapping class="demo.entities.AccountExam" />
         <mapping class="demo.entities.AccountRole" />
-	</session-factory>
+        <mapping class="demo.entities.AccountRoleId" />
+        <mapping class="demo.entities.Answer" />
+        <mapping class="demo.entities.Category" />
+        <mapping class="demo.entities.Exam" />
+        <mapping class="demo.entities.Question" />
+        <mapping class="demo.entities.Questiontype" />
+        <mapping class="demo.entities.Result" />
+        <mapping class="demo.entities.Role" />
+    </session-factory>
 </hibernate-configuration>
