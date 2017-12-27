@@ -26,15 +26,16 @@ public class DemoController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
 //	    List<Question> questions = questionService.findQuestionByExamid(1);
-	    AccountRole accountRole = new AccountRole();
+/*	    AccountRole accountRole = new AccountRole();
 	    Role role = new Role();
-	    role.setId(1);
+	    role.setId(2);
 	    Account account = new Account();
 	    account.setId(1);
 	    accountRole.setEnable(true);
 	    accountRole.setAccount(account);
 	    accountRole.setRole(role);
-	    accountService.setAccountRole(accountRole);
+	    accountService.setAccountRole(accountRole);*/
+	    Account account = accountService.getAccountById(1);
 		return "demo.index";
 	}
 	
