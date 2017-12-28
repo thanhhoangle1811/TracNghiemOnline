@@ -15,7 +15,9 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import demo.dto.ExamOfUserDTO;
 import demo.entities.Account;
+import demo.entities.AccountExam;
 import demo.entities.AccountRole;
 import demo.entities.Category;
 import demo.entities.Exam;
@@ -57,5 +59,24 @@ public class AccountController {
 		accountRole.setRole(newRole);
 		accountRoleService.create(accountRole);
 		return "redirect:../category/index.html";
+	}
+	
+	@RequestMapping(value = { "/myquizhistory" }, params = { "id" }, method = RequestMethod.GET)
+	public String examsbycategory(@RequestParam(value = "id") int id, ModelMap modelMap) {
+
+		Account account =  accountService.getAccountById(id);
+		List<AccountExam> quizlist = account.getAccountexams();
+		List<ExamOfUserDTO> quizes = new ArrayList<ExamOfUserDTO>();
+		for(int i=0; i<quizlist.size(); i++){
+			ExamOfUserDTO quiz = new ExamOfUserDTO();
+			quiz.setExamid(quizlist.get(i).getExam().getId());
+			quiz.setExamName(quizlist.get(i).getExam().getName());
+			quiz.setMark(quizlist.get(i).getGrade());
+			quiz.setTotalMark(quizlist.get(i).getTotalGrade());
+			quiz.setTime(quizlist.get(i).getDoingDate());
+			quizes.add(quiz);
+		}
+		modelMap.put("quizes", quizes);
+		return "account.myquizhistory";
 	}
 }

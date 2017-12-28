@@ -27,8 +27,18 @@ public class AccountExam implements java.io.Serializable {
     private Date doingDate;
     private float grade;
     private List<Result> results = new ArrayList<Result>();
+    private float totalGrade;
 
-    public AccountExam() {
+    @Column(name = "totalgrade", nullable = false)
+    public float getTotalGrade() {
+		return totalGrade;
+	}
+
+	public void setTotalGrade(float totalGrade) {
+		this.totalGrade = totalGrade;
+	}
+
+	public AccountExam() {
     }
 
     public AccountExam(Account account, Exam exam, Date doingDate, float grade) {
