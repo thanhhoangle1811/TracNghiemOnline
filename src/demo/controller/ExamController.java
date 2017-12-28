@@ -90,54 +90,15 @@ public class ExamController {
     }
     private List<Question> filterQuestion(Exam exam){
         List<Question> list =exam.getQuestions();
-        /*for (int i = 0;i < list.size();i++) {
-            List<Answer> ansTemp = new ArrayList<Answer>();
-            for (Answer answer : list.get(i).getAnswers()) {
-            	ansTemp.add(answer);
-            }
-            list.get(i).setAnswers(ansTemp);
-        }*/
         Collections.shuffle(list);
+        if(list.size() > 20) {
+            list = list.subList(0, 20);    
+        }
         return list;
     }
     @RequestMapping(value = { "/showexam.html" }, method = RequestMethod.POST)
     public String showexam(@ModelAttribute("examDto") ExamDTO examDTO, ModelMap modelMap) {
     	 questionService.storeAnswerStu(examDTO);  
-       /*
-    	//find exam
-    	String examName = examDTO.getExam().getName();
-    	//find how many question, how many right answers
-    	List<Question> questionList = examDTO.getExam().getQuestions();
-    	ResultDTOs resultList =  new ResultDTOs(examDTO.getResultDTOs());
-    	int totalQuestion = questionList.size();
-    	int totalRightAnswer = 0;
-    	float totalGradeOfExam = 0;
-    	float totalGradeOfUser = 0;
-    	for(int i = 0; i < totalQuestion; i++){
-    		Question currentQuestion = questionList.get(i);
-    		totalGradeOfExam += currentQuestion.getGrade();
-    		Result currentResult = resultList.getResultByQuestionId(currentQuestion.getId());
-    		if(currentQuestion.getQuestiontype().getId() == 1){
-    			List<Answer> rightAnswers =  currentQuestion.getAnswers();
-    			if(rightAnswers.size() == 1 && rightAnswers.get(0).getId() == currentResult.getAnswer().getId()){
-    				totalRightAnswer++;
-    				totalGradeOfUser += currentQuestion.getGrade();
-    			}
-    		}
-    		else{
-    			
-    		}
-    		modelMap.put("examName", examName);
-            modelMap.put("totalQuestion", totalQuestion);
-            modelMap.put("totalRightAnswer", totalRightAnswer);
-            modelMap.put("totalGradeOfExam", totalGradeOfExam);
-            modelMap.put("totalGradeOfUser", totalGradeOfUser);
-            return "exam.showexamresult";
-    	}
-    	//find total grade for the exam
-    	//find total grade user achieve, percentage
-    	//find the time user used
-    	*/
     	String examName = examDTO.getExam().getName();
     	List<Question> questionList = examService.findQuestionsById(examDTO.getExam().getId());
     	ResultDTOs resultList =  new ResultDTOs(examDTO.getResultDTOs());

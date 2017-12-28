@@ -57,6 +57,12 @@
     		value="/WEB-INF/jsp/exam/showexamresult.jsp"></put-attribute>
     </definition>
     
+    <definition name="account.myquizhistory" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/account/myquizhistory.jsp"></put-attribute>
+    </definition>
+    
     <definition name="general.403" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
     	<put-attribute name="content" 
