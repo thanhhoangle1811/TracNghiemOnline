@@ -14,5 +14,5 @@ public interface QuestionService {
 
 	public Question findById(int questionId);
 	public List<Question> findQuestionByExamid(int examId);
-	public void storeAnswerStu(ExamDTO dto);
+	public void storeAnswerStu(ExamDTO dto,float grade,float totalGrade);
 }

@@ -6,12 +6,19 @@ import java.util.*;
 public class ExamDTO {
     private Exam exam;
     private List<ResultDTO> resultDTOs;
+    private Account account;
     
     
     
     
     
-    public Exam getExam() {
+    public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	public Exam getExam() {
         return exam;
     }
     public void setExam(Exam exam) {
