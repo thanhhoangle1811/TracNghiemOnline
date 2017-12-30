@@ -46,6 +46,7 @@ public class QuestionServiceImpl implements QuestionService {
 		// ???
 		accountExam.setGrade(grade);
 		int accountExamid =  accountExamDAO.create(accountExam);
+		accountExam.setId(accountExamid);
 		if(accountExamid > 0){
 			List<Result> results = new ArrayList<Result>();
 			for (int i = 0; i < dto.getResultDTOs().size(); i++) {
@@ -56,6 +57,7 @@ public class QuestionServiceImpl implements QuestionService {
 				}
 			}
 			for (int i = 0; i < results.size(); i++) {
+				results.get(i).setAccountexam(accountExam);
 				resultDAO.storeResult(results.get(i));
 			}	
 		}
