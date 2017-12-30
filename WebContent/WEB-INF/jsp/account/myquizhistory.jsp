@@ -9,12 +9,14 @@
 		<th>No</th>
 		<th>Quiz Name</th>
 		<th>Mark</th>
+		<th>Date</th>
 	</tr>
 	<c:forEach var="quiz" items="${quizes}" varStatus="status">
 		<tr>
 			<td>${status.index + 1}</td>
 			<td>${quiz.examName}</td>
 			<td>${quiz.mark}/${quiz.totalMark}</td>
+			<td>${quiz.time}</td>
 		</tr>
 	</c:forEach>
 </table>	
