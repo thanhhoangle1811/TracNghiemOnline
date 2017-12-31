@@ -3,7 +3,6 @@ package demo.services;
 import java.util.List;
 
 import demo.dto.ExamDTO;
-import demo.entities.Category;
 import demo.entities.Question;
 
 public interface QuestionService {

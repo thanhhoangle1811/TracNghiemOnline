@@ -100,51 +100,44 @@ public class ExamController {
 
 	@RequestMapping(value = { "/showexam.html" }, method = RequestMethod.POST)
 	public String showexam(@ModelAttribute("examDto") ExamDTO examDTO, ModelMap modelMap) {
-
-		
-		questionService.storeAnswerStu(examDTO,10,20);
 		String examName = examDTO.getExam().getName();
-		List<Question> questionList = examService.findQuestionsById(examDTO.getExam().getId());
-		ResultDTOs resultList = new ResultDTOs(examDTO.getResultDTOs());
-		int totalQuestion = questionList.size();
+		List<ResultDTO> resultDTOs = examDTO.getResultDTOs();
+		int totalQuestion = 0;
 		int totalRightAnswer = 0;
 		float totalGradeOfExam = 0;
 		float totalGradeOfUser = 0;
-		for (int i = 0; i < totalQuestion; i++) {
-			Question currentQuestion = questionList.get(i);
-			totalGradeOfExam += currentQuestion.getGrade();
-
-			Result currentResult = resultList.getResultByQuestionId(currentQuestion.getId());
-			if (currentQuestion.getQuestiontype().getId() == 1) {
-				Answer rightAnswer = null;
-				List<Answer> answers = currentQuestion.getAnswers();
-				for (int j = 0; j < answers.size(); j++) {
-					if (answers.get(j).isIstrue()) {
-						rightAnswer = answers.get(j);
+		for (int i = 0; i < resultDTOs.size(); i++) {
+			String isTrue = resultDTOs.get(i).getIsTrue();
+			if (isTrue != null && (isTrue.equalsIgnoreCase("true") || isTrue.equalsIgnoreCase("on"))) {
+				Question currentQuestion = questionService.findById(resultDTOs.get(i).getResult().getQuestion().getId());
+				totalGradeOfExam += currentQuestion.getGrade();
+				totalQuestion += 1;
+				if (currentQuestion.getQuestiontype().getId() == 1) {
+					Answer rightAnswer = null;
+					List<Answer> answers = currentQuestion.getAnswers();
+					for (int j = 0; j < answers.size(); j++) {
+						if (answers.get(j).isIstrue()) {
+							rightAnswer = answers.get(j);
+							break;
+						}
 					}
+					if (rightAnswer != null && rightAnswer.getId() == resultDTOs.get(i).getResult().getAnswer().getId()) {
+						totalRightAnswer++;
+						totalGradeOfUser += currentQuestion.getGrade();
+					}
+				} else {
+					//TODO: check case questionType = 2
 				}
-				if (rightAnswer != null && rightAnswer.getId() == currentResult.getAnswer().getId()) {
-					totalRightAnswer++;
-					totalGradeOfUser += currentQuestion.getGrade();
-				}
-			} else {
-
-			}
-		}
-
+			}			
+		}		
+		
+		questionService.storeAnswerStu(examDTO, totalGradeOfUser,totalGradeOfExam);
 		modelMap.put("examName", examName);
 		modelMap.put("totalQuestion", totalQuestion);
 		modelMap.put("totalRightAnswer", totalRightAnswer);
 		modelMap.put("totalGradeOfExam", totalGradeOfExam);
 		modelMap.put("totalGradeOfUser", totalGradeOfUser);
 		return "exam.showexamresult";
-
-		/* if(examDTO.isComplete()) { */
-		//
-		/*
-		 * }else { return "demo.index"; }
-		 */
-		// return "exam.showexamresult";
 	}
 
 	/* Ca le */

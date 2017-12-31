@@ -9,17 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.dao.AccountExamDAO;
-import demo.dao.AnswerDAO;
-import demo.dao.CategoryDAO;
 import demo.dao.QuestionDAO;
 import demo.dao.ResultDAO;
 import demo.dto.ExamDTO;
-import demo.entities.Account;
 import demo.entities.AccountExam;
-import demo.entities.Answer;
-import demo.entities.Exam;
 import demo.entities.Question;
-import demo.entities.Questiontype;
 import demo.entities.Result;
 
 @Service("questionService")
@@ -27,8 +21,6 @@ import demo.entities.Result;
 public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private QuestionDAO questionDAO;
-	@Autowired
-	private AnswerDAO answerDAO;
 	@Autowired
 	private ResultDAO resultDAO;
 	@Autowired
@@ -41,9 +33,7 @@ public class QuestionServiceImpl implements QuestionService {
 		accountExam.setAccount(dto.getAccount());
 		accountExam.setExam(dto.getExam());
 		accountExam.setDoingDate(new Date());
-		// ??
 		accountExam.setTotalGrade(totalGrade);
-		// ???
 		accountExam.setGrade(grade);
 		int accountExamid =  accountExamDAO.create(accountExam);
 		accountExam.setId(accountExamid);
