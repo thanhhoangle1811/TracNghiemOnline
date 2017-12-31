@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en-US" class="scheme_original">
 
@@ -293,23 +294,24 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 							<li id="menu-item-2165"
 								class="icon-users-group menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a
 								href="aboutus.html"><span>About Us</span></a></li>
-
 							<li id="menu-item-2169"
-								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Education</span></a>
+								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a href="${pageContext.request.contextPath }/category/index.html"><span>Category</span></a>
+								
 								<ul class="sub-menu">
+								
+									<c:forEach var="category" items="${categories }">
 									<li id="menu-item-2346"
 										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2346"><a
-										href="${pageContext.request.contextPath }/category/index.html"><span>Category</span></a></li>
-									<li id="menu-item-2344"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2344"><a
-										href="tests-and-quizzes.html"><span>Tests and
-												Quizzes</span></a></li>
-								</ul></li>
+										href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }">${category.name }</a></li>
+									</c:forEach>
+								</ul>
+								
+							</li>
+							<li id="menu-item-2169"
+								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Education</span></a>
+								</li>
 							<li id="menu-item-2165"
-								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Result</span></a></li>
-							<li id="menu-item-2165"
-								class="icon-school menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a
-								href="${pageContext.request.contextPath }/account/register.html"><span>Register</span></a></li>
+								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Result</span></a></li>											
 						</ul>
 					</nav>
 				</div>
