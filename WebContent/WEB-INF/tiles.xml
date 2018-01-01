@@ -45,10 +45,10 @@
     		value="/WEB-INF/jsp/general/login.jsp"></put-attribute>
     </definition>
     
-    <definition name="account.register" 
+    <definition name="general.register" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
     	<put-attribute name="content" 
-    		value="/WEB-INF/jsp/account/register.jsp"></put-attribute>
+    		value="/WEB-INF/jsp/general/register.jsp"></put-attribute>
     </definition>
     
     <definition name="exam.showexamresult" 

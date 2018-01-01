@@ -23,7 +23,6 @@ public class AccountServiceImpl
 	    accountDAO.setAccountRole(accountRole);
     }
 
-
     @Override
     public Account getAccountById(int id) {
         // TODO Auto-generated method stub
@@ -31,10 +30,14 @@ public class AccountServiceImpl
         
     }
 
-
     @Override
 	public Account create(Account account) {
 		return accountDAO.create(account);
+	}
+    
+    @Override
+    public Account getAccountByEmail(String email) {
+		return accountDAO.getAccountByEmail(email);
 	}
 
 }

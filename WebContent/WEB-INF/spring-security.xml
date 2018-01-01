@@ -7,9 +7,11 @@
 
 	<!-- enable use-expressions -->
 	<http auto-config="true">
-		<intercept-url pattern="/admin**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/user**"
-			access="ROLE_ADMIN, ROLE_USER" />
+		<intercept-url pattern="/exam/create*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/exam/edit*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/exam/showexam*" access="ROLE_USER" />
+		<intercept-url pattern="/category/*" access="ROLE_ADMIN, ROLE_USER" />
+		<intercept-url pattern="/account/*" access="ROLE_ADMIN, ROLE_USER" />
 			
 		<access-denied-handler error-page="/general/403.html" />
 		<form-login login-page="/general/login.html" 

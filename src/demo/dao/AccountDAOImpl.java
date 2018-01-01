@@ -69,4 +69,25 @@ public class AccountDAOImpl implements AccountDAO {
 		return account;
 	}
 	
+	@Override
+	public Account getAccountByEmail(String email) {
+		Account account = new Account();
+	    Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery(" FROM Account where email = :email");
+            query.setParameter("email", email);
+            account = (Account) query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+	    return account;
+	}
+	
 }

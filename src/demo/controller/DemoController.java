@@ -27,7 +27,7 @@ public class DemoController {
 	    accountRole.setAccount(account);
 	    accountRole.setRole(role);
 	    accountService.setAccountRole(accountRole);*/
-	    Account account = accountService.getAccountById(1);
+	    /*Account account = accountService.getAccountById(1);*/
 		return "demo.index";
 	}
 	
