@@ -9,4 +9,5 @@ public interface AccountDAO {
 	public void setAccountRole(AccountRole accountRole);
 	public Account getAccountById(int id);
 	public Account getAccountByEmail(String email);
+	public List<Account> getAll();
 }

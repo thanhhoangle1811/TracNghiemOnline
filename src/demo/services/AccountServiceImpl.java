@@ -39,5 +39,10 @@ public class AccountServiceImpl
     public Account getAccountByEmail(String email) {
 		return accountDAO.getAccountByEmail(email);
 	}
+    
+    @Override
+    public List<Account> getAll() {
+		return accountDAO.getAll();
+	}
 
 }

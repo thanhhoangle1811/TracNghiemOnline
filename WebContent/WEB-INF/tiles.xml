@@ -63,6 +63,12 @@
     		value="/WEB-INF/jsp/account/myquizhistory.jsp"></put-attribute>
     </definition>
     
+    <definition name="account.allaccounts" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/account/allaccounts.jsp"></put-attribute>
+    </definition>
+    
     <definition name="general.403" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
     	<put-attribute name="content" 

@@ -90,4 +90,24 @@ public class AccountDAOImpl implements AccountDAO {
 	    return account;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Account> getAll() {
+		List<Account> accounts = null;
+		Session session = null;
+		Transaction transaction = null;
+		try {
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			accounts = session.createQuery("from Account").list();
+			transaction.commit();
+		} catch (Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return accounts;
+	}
 }

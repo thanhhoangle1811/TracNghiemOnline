@@ -25,7 +25,7 @@ public class AccountController {
 	private AccountService accountService;
 	
 	@RequestMapping(value = { "/myquizhistory" }, method = RequestMethod.GET)
-	public String myquizhistory(ModelMap modelMap) {
+	public String myQuizHistory(ModelMap modelMap) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -51,7 +51,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = { "/userquizhistory" }, params = { "id" }, method = RequestMethod.GET)
-	public String myquizhistory(@RequestParam(value = "id") int id, ModelMap modelMap) {
+	public String userQuizHistory(@RequestParam(value = "id") int id, ModelMap modelMap) {
 		Account account =  accountService.getAccountById(id);
 		List<AccountExam> quizlist = account.getAccountexams();
 		List<ExamOfUserDTO> quizes = new ArrayList<ExamOfUserDTO>();
@@ -67,5 +67,12 @@ public class AccountController {
 		
 		modelMap.put("quizes", quizes);
 		return "account.myquizhistory";
+	}
+	
+	@RequestMapping(value = { "/allaccounts" }, method = RequestMethod.GET)
+	public String getAllAccounts(ModelMap modelMap) {
+		List<Account> accounts = accountService.getAll();
+		modelMap.put("accounts", accounts);
+		return "account.allaccounts";
 	}
 }
