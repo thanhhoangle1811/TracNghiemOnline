@@ -51,10 +51,15 @@
 								name="resultDTOs[${countAnswer }].result.account.id"
 								value="${accountId }" />
 							<label>${answer.prefix}</label>
-							<label style="display: block;"> <input
-								class="wpProQuiz_questionInput" questionId="${question.id }"
-								bindInput="${countAnswer }" type="radio"
-								name="questions[${status.index }]">${answer.content}
+							<label style="display: block;"> 
+							<c:choose>
+                            <c:when test="${question.questiontype.name=='radio' }">
+                                <input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="radio" name="questions[${status.index }]" >${answer.content}
+                            </c:when>
+                            <c:otherwise>
+                                <input class="wpProQuiz_questionInput" questionId="${question.id }" bindInput="${countAnswer }" type="checkbox" name="resultDTOs[${countAnswer }].isTrue" >${answer.content}
+                            </c:otherwise>
+                        </c:choose>${answer.content}
 							</label>
 							<c:set var="countAnswer" scope="session"
 								value="${countAnswer +1 }" />
