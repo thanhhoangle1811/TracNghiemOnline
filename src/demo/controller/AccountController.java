@@ -19,13 +19,14 @@ import demo.services.*;
 
 @Controller
 @RequestMapping("account")
-public class AccountController {
+public class AccountController extends CommonController{
 
 	@Autowired
 	private AccountService accountService;
 	
 	@RequestMapping(value = { "/myquizhistory" }, method = RequestMethod.GET)
 	public String myQuizHistory(ModelMap modelMap) {
+		this.setCommon(modelMap);
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -42,7 +43,7 @@ public class AccountController {
 				quiz.setTime(quizlist.get(i).getDoingDate());
 				quizes.add(quiz);
 			}
-			
+
 			modelMap.put("quizes", quizes);
 			return "account.myquizhistory";
 		}
@@ -71,6 +72,7 @@ public class AccountController {
 	
 	@RequestMapping(value = { "/allaccounts" }, method = RequestMethod.GET)
 	public String getAllAccounts(ModelMap modelMap) {
+		this.setCommon(modelMap);
 		List<Account> accounts = accountService.getAll();
 		modelMap.put("accounts", accounts);
 		return "account.allaccounts";

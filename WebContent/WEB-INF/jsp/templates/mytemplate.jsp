@@ -116,6 +116,10 @@ img.wp-smiley, img.emoji {
 	id='micro_office-theme-style-css'
 	href='http://localhost:8081/css/wp-content/themes/micro-office/css/theme.css'
 	type='text/css' media='all' />
+<link property="stylesheet" rel='stylesheet'
+	id='micro_office-theme-style-css'
+	href='http://localhost:8081/css/wp-content/css-lib/jquery.dataTables.min.css'
+	type='text/css' media='all' />
 <style id='micro_office-theme-style-inline-css' type='text/css'>
 .sidebar_outer_logo .logo_main, .top_panel_wrap .logo_main,
 	.top_panel_wrap .logo_fixed {
@@ -175,6 +179,8 @@ img.wp-smiley, img.emoji {
 	src='http://localhost:8081/css/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
 <script type='text/javascript'
 	src='http://localhost:8081/css/wp-content/jquery-3.2.1.min.js?v=1.0'></script>
+	<script type='text/javascript'
+	src='http://localhost:8081/css/wp-content/js-lib/jquery.dataTables.min.js'></script>
 <script type='text/javascript'
 	src='http://localhost:8081/css/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
 <script type='text/javascript'
@@ -351,7 +357,7 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 						<aside id="micro_office_widget_birthdays-2"
 							class="widget_number_1 widget widget_birthdays">
 							<h5 class="widget_title">Account</h5>
-
+${accoutInfo.firstname }
 						</aside>
 					</div>
 				</div>

@@ -112,8 +112,8 @@ body {
     <div class="form">
 	<form name='loginForm'
 		action="<c:url value='/j_spring_security_check' />" method='POST'>
-		<input path="email" type="text" placeholder="email" />
-        <input path="password" type="password" placeholder="password" />
+		<input name="email" type="text" placeholder="email" />
+        <input name="password" type="password" placeholder="password" />
         <button>login</button>
         <p class="message">Not registered?
           <a type="submit" value="Login" href="${pageContext.request.contextPath }/account/register.html">Create an account</a>
