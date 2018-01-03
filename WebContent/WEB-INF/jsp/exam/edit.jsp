@@ -17,9 +17,9 @@
 				<table>
 					<tr>
 						<td><input type="hidden" name="id" value="${question.id}" />
-							<input type="hidden" name="questiontype.id"
+							<%-- <input type="hidden" name="questiontype.id"
 							value="${question.questiontype.id}" /> <input type="hidden"
-							name="exam.id" value="${question.exam.id}" /></td>
+							name="exam.id" value="${question.exam.id}" /> --%></td>
 						<td>
 							<h4>Content :</h4> <input type="text" name="content"
 							value="${question.content}" />
@@ -31,12 +31,55 @@
 							value="${question.grade}" />
 						</td>
 						<td>
-							<h4>Questiontype :</h4> <input type="text"
-							name="questiontype.name" value="${question.questiontype.name}" />
+							<h4>Questiontype :</h4> 
+							<select name="questiontype.id" value="${question.questiontype.id}">
+								<option value="">--- Select ---</option>
+								<c:forEach items="${questionTypes} " var="type" varStatus="stt">
+								
+								<c:choose>
+								    <c:when test="${question.questiontype.id == questionTypes[stt.index].id}">
+								        <option value="${questionTypes[stt.index].id} " selected>${questionTypes[stt.index].name}</option>
+								    </c:when>    
+								    <c:otherwise>
+								        <option value="${questionTypes[stt.index].id} ">${questionTypes[stt.index].name}</option>
+								    </c:otherwise>
+								</c:choose>
+									
+								</c:forEach>
+						</select>
 						</td>
 					</tr>
 				</table>
+				
 				<br></br>
+				<table>
+					<tr>
+						<td>Exam</td>
+					</tr>
+					<c:forEach items="${question.exams }" var="exam" varStatus="examStatus">
+					<tr class="exam-value">
+						<td>
+						<select name="exams[${examStatus.index }].id" count="${examStatus.index }">
+								<option value="">--- Select ---</option>
+								<c:forEach items="${exams} " var="exam" varStatus="stt">
+								<c:choose>
+								    <c:when test="${question.exams[examStatus.index].id == exams[stt.index].id}">
+								        <option value="${exams[stt.index].id} " selected>${exams[stt.index].name}</option>
+								    </c:when>    
+								    <c:otherwise>
+								    	<option value="${exams[stt.index].id}">${exams[stt.index].name}</option>
+								    </c:otherwise>
+								</c:choose>
+									
+								</c:forEach>
+						</select></td>
+						<td><a class="remove-question" count="0">- (Question)</a></td>
+					</tr>
+					</c:forEach>
+					
+				</table>
+                <a id="create-exam">+ (Exam)</a>
+				<br><br>
 				<table>
 					<tr>
 						<td>

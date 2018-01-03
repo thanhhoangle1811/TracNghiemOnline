@@ -40,17 +40,19 @@
                 <tr><td>Exam</td></tr>
                 <tr class="exam-value">
                     <td>
-                        <select name="exam[0].id">
+                        <select name="exams[0].id" count="0">
                                     <option value="">--- Select ---</option>
-                                    <c:forEach items="${exam} " var="exam"
+                                    <c:forEach items="${exams} " var="exam"
                                         varStatus="stt">
                                         <option
                                             value="${exams[stt.index].id}">${exams[stt.index].name}</option>
                                     </c:forEach>
                         </select>
                     </td>
+                    <td><a class="remove-question" count="0">- (Question)</a></td>
                 </tr>
                 </table>
+                <a id="create-exam">+ (Exam)</a>
 				<table>
 					<tr>
 						<td>
@@ -72,9 +74,27 @@
 	</div>
 </div>
 <script>
-$( document ).ready(function() {
+
+$(document).ready(function() {
     var countExam = $('#countExam').val();
-    countExam = createExam(countExam)
-    $('#countExam').val(countExam);
+    /* countExam = createExam(countExam)
+    $('#countExam').val(countExam); */
+    $("#create-exam").on("click",function(){
+    	createExam(countExam);
+    	var changeATag = $('a[count="'+countExam+'"]').last();
+    	countExam++;
+    	$(changeATag).attr("count",countExam);
+    	$('#countExam').val(countExam);
+    	$('.remove-question').off("click");
+    	$('.remove-question').on("click",function(){
+        	var count = $(this).attr('count');
+        	removeExam(count);
+        });
+    });
+    $('.remove-question').on("click",function(){
+    	var count = $(this).attr('count');
+    	removeExam(count);
+    });
+    
 });
 </script>

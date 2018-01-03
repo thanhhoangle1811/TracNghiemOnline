@@ -35,6 +35,11 @@ public class ExamController {
 
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
 	public String edit(@RequestParam("questionid") int questionId, ModelMap modelMap) {
+		List<Exam> exams = examService.findAll();
+		List<Questiontype> questiontypes = questionTypeService.findAll();
+		modelMap.put("questionTypes", questiontypes);
+		modelMap.put("exams", exams);
+		
 		Question question = questionService.findById(questionId);
 
 		modelMap.put("question", question);
@@ -63,8 +68,14 @@ public class ExamController {
 
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.POST)
 	public String createQuestion(@ModelAttribute("question") Question question, ModelMap modelMap) {
+		List<Exam> exams =  filterExam(question.getExams());
+		question.setExams(exams);
 		boolean flag = questionService.createQuestion(question);
 		if (flag) {
+			List<Exam> examsN = examService.findAll();
+			List<Questiontype> questiontypes = questionTypeService.findAll();
+			modelMap.put("questionTypes", questiontypes);
+			modelMap.put("exams", examsN);
 			return "exam.create";
 		} else {
 			return "demo.index";
@@ -140,5 +151,14 @@ public class ExamController {
 		return "exam.showexamresult";
 	}
 
+	private List<Exam> filterExam(List<Exam> exams){
+		List<Exam> result = new ArrayList<Exam>();
+		for (Exam exam : exams) {
+			if(exam.getId() != null){
+				result.add(exam);
+			}
+		}
+		return result;
+	}
 	/* Ca le */
 }
