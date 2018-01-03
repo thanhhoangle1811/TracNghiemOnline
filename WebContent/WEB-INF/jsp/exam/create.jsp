@@ -30,15 +30,20 @@
 								</c:forEach>
 						</select>
 						</td>
-						<td>
-							<h4>Exam :</h4> <select name="exam.id">
-								<option value="">--- Select ---</option>
-								<c:forEach items="${exam} " var="exam" varStatus="stt">
-									<option value="${exams[stt.index].id}">${exams[stt.index].name}</option>
-								</c:forEach>
-						</select>
-						</td>
 					</tr>
+                    <tr>
+                        <td><h4>Exam :</h4></td>
+                        <td class="exam-value">
+                            <select name="exam[0].id">
+                                <option value="">--- Select ---</option>
+                                <c:forEach items="${exam} " var="exam"
+                                    varStatus="stt">
+                                    <option
+                                        value="${exams[stt.index].id}">${exams[stt.index].name}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
 				</table>
 				<br></br>
 				<table>

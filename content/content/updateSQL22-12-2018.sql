@@ -1,10 +1,11 @@
-ALTER TABLE answer DROP COLUMN isStudent;
-ALTER TABLE question DROP COLUMN examid;
-
 ALTER TABLE question
   drop FOREIGN KEY question_ibfk_2,
   drop KEY examid;
   
+ALTER TABLE answer DROP COLUMN isStudent;
+ALTER TABLE question DROP COLUMN examid;
+
+
  ALTER TABLE question DROP COLUMN examid;
  
  CREATE TABLE `examquestion` (
