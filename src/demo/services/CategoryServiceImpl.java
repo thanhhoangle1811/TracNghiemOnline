@@ -27,5 +27,15 @@ public class CategoryServiceImpl
         // TODO Auto-generated method stub
         return categoryDAO.findById(id);
     }
+	
+	@Override
+	public boolean createCategory(Category category) {
+		return categoryDAO.createCategory(category);
+	}
+	
+	@Override
+	public boolean updateCategory(Category category) {
+		return categoryDAO.updateCategory(category);
+	}
 
 }

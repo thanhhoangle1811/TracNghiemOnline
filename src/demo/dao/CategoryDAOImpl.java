@@ -55,4 +55,46 @@ public class CategoryDAOImpl implements CategoryDAO {
         return category;
     }
 	
+	@Override
+	public boolean createCategory(Category category) {
+		boolean result = false;
+		Session session = null;
+		Transaction transaction = null;
+		try {
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			session.save(category);
+			transaction.commit();
+			result = true;
+		} catch (Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
+	@Override
+    public boolean updateCategory(Category category) {
+	    boolean result = false;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(category);
+            transaction.commit();
+            result = true;
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+	
 }

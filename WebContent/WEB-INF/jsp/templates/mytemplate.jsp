@@ -358,6 +358,9 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 							class="widget_number_1 widget widget_birthdays">
 							<h5 class="widget_title">Account</h5>
 ${accoutInfo.firstname }
+
+<br/><br/>
+<div><a href="<c:url value="/j_spring_security_logout" />" > Logout</a></div>
 						</aside>
 					</div>
 				</div>

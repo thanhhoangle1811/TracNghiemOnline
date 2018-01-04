@@ -14,8 +14,10 @@
 						<c:forEach var="category" items="${categories }">
 							<tr>
 								<td>${category.id }</td>
-								<td><a
-									href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }">${category.name }</a>
+								<td>${category.name }</td>
+								<td>
+									<a href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }">See exams of this</a> / 
+									<a href="${pageContext.request.contextPath }/category/edit.html?id=${category.id }">Edit</a>
 								</td>
 							</tr>
 						</c:forEach>

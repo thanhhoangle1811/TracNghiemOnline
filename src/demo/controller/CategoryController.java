@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import demo.entities.Category;
 import demo.entities.Exam;
+import demo.entities.Question;
+import demo.entities.Questiontype;
 import demo.services.*;
 
 @Controller
@@ -35,5 +37,43 @@ public class CategoryController {
 		return "category.examsbycategory";
 	}
 	
+	@RequestMapping(value = { "/create.html" }, method = RequestMethod.GET)
+	public String create(ModelMap modelMap) {
+		return "category.create";
+	}
+
+	@RequestMapping(value = { "/create.html" }, method = RequestMethod.POST)
+	public String createCategory(@ModelAttribute("category") Category category, ModelMap modelMap) {
+		boolean flag = categoryService.createCategory(category);
+		String msg;
+		if (flag) {
+			msg = "Create new category successfully.";
+		} else {
+			msg = "Create new category failed, please try again.";
+		}
+		modelMap.put("msg", msg);
+		return "category.create";
+	}
+	
+	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
+	public String edit(@RequestParam("categoryid") int categoryid, ModelMap modelMap) {
+		Category category = categoryService.findById(categoryid);
+
+		modelMap.put("category", category);
+		return "category.edit";
+	}
+
+	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.POST)
+	public String edit(@ModelAttribute("category") Category category, ModelMap modelMap) {
+		boolean flag = categoryService.updateCategory(category);
+		String msg;
+		if (flag) {
+			msg = "Edit the category successfully.";
+		} else {
+			msg = "Edit the category failed, please try again.";
+		}
+		modelMap.put("msg", msg);
+		return "category.edit";
+	}
 	
 }

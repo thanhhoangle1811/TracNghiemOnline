@@ -37,6 +37,18 @@
     		value="/WEB-INF/jsp/category/examsbycategory.jsp"></put-attribute>
     </definition>
     
+    <definition name="category.create" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/category/create.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="category.edit" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/category/edit.jsp"></put-attribute>
+    </definition>
+    
     <definition name="exam.showexam" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
     	<put-attribute name="content" 
