@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import demo.dao.AccountExamDAO;
 import demo.dao.QuestionDAO;
 import demo.dao.ResultDAO;
+import demo.dto.Consts;
 import demo.dto.ExamDTO;
 import demo.entities.AccountExam;
 import demo.entities.Question;
@@ -41,8 +42,8 @@ public class QuestionServiceImpl implements QuestionService {
 			List<Result> results = new ArrayList<Result>();
 			for (int i = 0; i < dto.getResultDTOs().size(); i++) {
 				if (dto.getResultDTOs().get(i).getIsTrue() != null
-						&& (dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase("true")
-								|| dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase("on"))) {
+						&& (dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase(Consts.TRUE_VALUE)
+								|| dto.getResultDTOs().get(i).getIsTrue().equalsIgnoreCase(Consts.ON_VALUE))) {
 					results.add(dto.getResultDTOs().get(i).getResult());
 				}
 			}

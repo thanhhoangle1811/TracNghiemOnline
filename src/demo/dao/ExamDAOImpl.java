@@ -16,6 +16,25 @@ public class ExamDAOImpl implements ExamDAO{
     @Autowired
     private SessionFactory sessionFactory;
 
+    
+    @Override
+    public void createExam(Exam exam) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(exam);
+            transaction.commit();
+        }catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+
     @Override
     public List<Exam> findAll(){
     	List<Exam> result = new ArrayList<Exam>();

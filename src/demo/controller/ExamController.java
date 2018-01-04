@@ -11,8 +11,10 @@ import java.util.Set;
 
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.*;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import demo.dao.QuestionDAO;
@@ -21,7 +23,7 @@ import demo.dto.ResultDTO;
 import demo.dto.ResultDTOs;
 import demo.entities.*;
 import demo.services.*;
-
+import demo.dto.*;
 @SuppressWarnings("unused")
 @Controller
 @RequestMapping("exam")
@@ -32,7 +34,15 @@ public class ExamController {
 	private QuestionTypeService questionTypeService;
 	@Autowired
 	private QuestionService questionService;
-
+	@Autowired
+	private CategoryService categoryService;
+	
+	@InitBinder  
+	public void initBinder(WebDataBinder binder) {  
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");  
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));  
+	}
+	
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
 	public String edit(@RequestParam("questionid") int questionId, ModelMap modelMap) {
 		List<Exam> exams = examService.findAll();
@@ -58,6 +68,21 @@ public class ExamController {
 		}
 
 	}
+	@RequestMapping(value = { "/create-exam.html" }, method = RequestMethod.GET)
+    public String createExam(ModelMap modelMap) {
+	    List<Category> categories =  categoryService.findAll();
+        modelMap.put("categories", categories);
+        return "exam.create.exam";
+    }
+	
+	@RequestMapping(value = { "/create-exam.html" }, method = RequestMethod.POST)
+    public String createExam(@ModelAttribute("exam") Exam exam, ModelMap modelMap) {
+        List<Category> categories =  categoryService.findAll();
+        
+        modelMap.put("categories", categories);
+	    examService.createExam(exam);
+        return "exam.create.exam";
+    }
 
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.GET)
 	public String create(ModelMap modelMap) {
@@ -98,6 +123,7 @@ public class ExamController {
 		modelMap.put("questions", list);
 		modelMap.put("exam", exam);
 		modelMap.put("time", time);
+		//TODO: put value account
 		modelMap.put("accountId", 1);
 		return "exam.showexam";
 	}
@@ -105,8 +131,8 @@ public class ExamController {
 	private List<Question> filterQuestion(Exam exam) {
 		List<Question> list = exam.getQuestions();
 		Collections.shuffle(list);
-		if (list.size() > 20) {
-			list = list.subList(0, 20);
+		if (list.size() > Consts.MAX_QUESTION) {
+			list = list.subList(0, Consts.MAX_QUESTION);
 		}
 		return list;
 	}
@@ -162,5 +188,4 @@ public class ExamController {
 		}
 		return result;
 	}
-	/* Ca le */
 }

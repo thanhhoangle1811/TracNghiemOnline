@@ -7,11 +7,6 @@ public class ExamDTO {
     private Exam exam;
     private List<ResultDTO> resultDTOs;
     private Account account;
-    
-    
-    
-    
-    
     public Account getAccount() {
 		return account;
 	}

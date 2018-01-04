@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import demo.dao.CategoryDAO;
 import demo.dao.ExamDAO;
+import demo.dto.ExamCDTO;
 import demo.entities.Exam;
 import demo.entities.Question;
 @Service("examService")
@@ -17,7 +18,6 @@ public class ExamServiceImpl implements ExamService{
     private ExamDAO examDAO;
     @Override
     public Exam findById(int id) {
-        // TODO Auto-generated method stub
         return examDAO.findById(id);
     }
     @Override
@@ -26,8 +26,10 @@ public class ExamServiceImpl implements ExamService{
     }
     @Override
     public List<Question> findQuestionsById(int id) {
-        // TODO Auto-generated method stub
         return examDAO.findQuestionsById(id);
     }
-
+    @Override
+    public void createExam(Exam exam) {
+        examDAO.createExam(exam);
+    }
 }

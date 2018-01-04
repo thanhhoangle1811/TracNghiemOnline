@@ -8,7 +8,11 @@
     	<put-attribute name="content" 
     		value="/WEB-INF/jsp/test/index.jsp"></put-attribute>
     </definition>
-    
+    <definition name="exam.create.exam" 
+        template="/WEB-INF/jsp/templates/mytemplate.jsp">
+        <put-attribute name="content" 
+            value="/WEB-INF/jsp/exam/create-exam.jsp"></put-attribute>
+    </definition>
     <definition name="exam.create" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">
     	<put-attribute name="content" 
