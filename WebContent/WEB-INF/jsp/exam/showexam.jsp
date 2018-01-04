@@ -77,9 +77,6 @@
 <script>
 var a = $('.wpProQuiz_question_text').find('input');
 $(document).ready(function(){
-    $(window).bind('beforeunload', function(e){
-        return "A";
-	});
     $('#buttonSubmitExam').on("click",function(){
     	$("form.exam-form").submit();
     });
@@ -97,9 +94,6 @@ $(document).ready(function(){
     		$('.answer_' +answerNumber ).val(false);   
     	}
     });
-    /* $("#submit").on("click",function(){
-    	
-    }); */
 });
 function startTimer() {
     var presentTime = a.val();
@@ -109,9 +103,11 @@ function startTimer() {
     if(s==59){m=m-1}
     if(m<0){
     	$("form.exam-form").submit();
-	}
-    a.val(m + ":" + s);
-    setTimeout(startTimer, 1000);
+	}else{
+		a.val(m + ":" + s);
+	    setTimeout(startTimer, 1000);
+    }
+    
   }
   
   function checkSecond(sec) {
