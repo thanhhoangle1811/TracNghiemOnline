@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import demo.dao.CategoryDAO;
 import demo.dao.ExamDAO;
-import demo.dto.ExamCDTO;
 import demo.entities.Exam;
 import demo.entities.Question;
 @Service("examService")
