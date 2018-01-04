@@ -44,7 +44,7 @@
     </definition>
     
     <definition name="general.login" 
-    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	template="/WEB-INF/jsp/templates/templateLogin.jsp">
     	<put-attribute name="content" 
     		value="/WEB-INF/jsp/general/login.jsp"></put-attribute>
     </definition>

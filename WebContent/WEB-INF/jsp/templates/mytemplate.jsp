@@ -277,7 +277,7 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 					<div class="sidebar_wrap sidebar">
 						<div class="top_panel_controls">
 							<div class="sidebar_pushy">
-								<a href="${pageContext.request.contextPath }/general/login.html"><span>Login</span></a>
+								<a href="${pageContext.request.contextPath }/general/login.html"><h2>Login</h2></a>
 							</div>
 							<div class="sidebar_pushy">
 								<a href="#" class="pushy_button sc_button"><span

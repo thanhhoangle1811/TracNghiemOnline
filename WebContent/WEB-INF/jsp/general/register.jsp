@@ -95,16 +95,7 @@
   .container .info span .fa {
     color: #EF3B3A;
   }
-  body {
-    background: #62d2cb; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #62d2cb, #4eaceb);
-    background: -moz-linear-gradient(right, #62d2cb, #4eaceb);
-    background: -o-linear-gradient(right, #62d2cb, #4eaceb);
-    background: linear-gradient(to left, #62d2cb, #4eaceb);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;      
-  }
+ 
     </style>
 </head>
 <body>
@@ -118,7 +109,7 @@
         <s:password path="password" type="password" placeholder="password" />
         <button>create</button>
         <p class="message">Already registered?
-          <a type="submit" value="Save" href="${pageContext.request.contextPath }/general/login.html">Sign In</a>
+          <a value="Save" href="${pageContext.request.contextPath }/general/login.html">Sign In</a>
         </p>
       </s:form>
     </div>
