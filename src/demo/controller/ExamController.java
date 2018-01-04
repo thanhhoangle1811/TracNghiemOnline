@@ -48,6 +48,8 @@ public class ExamController {
 
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.POST)
 	public String edit(@ModelAttribute("question") Question question, ModelMap modelMap) {
+	    List<Exam> exams =  filterExam(question.getExams());
+        question.setExams(exams);
 		boolean flag = questionService.updateQuestion(question);
 		if (flag == true) {
 			return "exam.create";

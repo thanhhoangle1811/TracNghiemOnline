@@ -1,6 +1,6 @@
 $( document ).ready(function() {
-	var countExam = $('#countExam').val();
-    console.log( "ready!" + countExam );
+	/*var countExam = $('#countExam').val();
+    console.log( "ready!" + countExam );*/
 });
 function createExam(num){
 	num++;
@@ -9,8 +9,12 @@ function createExam(num){
 	$(clone).insertAfter($(lstTr ));
 	var selectNew = $(clone).find('select');
 	$(selectNew).attr('name','exams['+ num +'].id').attr("count",num);
+	$(selectNew).val("");
 }
 function removeExam(num){
+	if($('.exam-value').length ==1){
+		return;
+	}
 	var removeSelected = $('a[count="'+num+'"]').closest('.exam-value');
 	$(removeSelected).remove();
 }

@@ -2,7 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type='text/javascript'
+    src='${pageContext.request.contextPath }/assets/js/create-exam.js?v=1.0'></script>
 <div class="sc_section sc_section_block">
 	<div class="sc_section_inner">
 		<div class="sc_section_content_wrap">
@@ -52,6 +54,7 @@
 				</table>
 				
 				<br></br>
+                <input type="hidden" id="countExam" value="${fn:length(question.exams)}"/>
 				<table>
 					<tr>
 						<td>Exam</td>
@@ -73,10 +76,22 @@
 									
 								</c:forEach>
 						</select></td>
-						<td><a class="remove-question" count="0">- (Question)</a></td>
+						<td><a class="remove-question" count="${examStatus.index }">- (Question)</a></td>
 					</tr>
 					</c:forEach>
-					
+					<tr class="exam-value">
+                        <td>
+                        <select name="exams[${fn:length(question.exams) }].id" count="${fn:length(question.exams) }">
+                        <option value="">--- Select ---</option>
+                                <c:forEach items="${exams} " var="exam" varStatus="stt">
+                                
+                                        <option value="${exams[stt.index].id}">${exams[stt.index].name}</option>
+                                    
+                                    
+                                </c:forEach>
+                        </select></td>
+                        <td><a class="remove-question" count="${fn:length(question.exams) }">- (Question)</a></td>
+                    </tr>
 				</table>
                 <a id="create-exam">+ (Exam)</a>
 				<br><br>
@@ -110,3 +125,26 @@
 		</div>
 	</div>
 </div>
+<script>
+
+$(document).ready(function() {
+    var countExam = $('#countExam').val();
+    $("#create-exam").on("click",function(){
+        createExam(countExam);
+        var changeATag = $('a[count="'+countExam+'"]').last();
+        countExam++;
+        $(changeATag).attr("count",countExam);
+        $('#countExam').val(countExam);
+        $('.remove-question').off("click");
+        $('.remove-question').on("click",function(){
+            var count = $(this).attr('count');
+            removeExam(count);
+        });
+    });
+    $('.remove-question').on("click",function(){
+        var count = $(this).attr('count');
+        removeExam(count);
+    });
+    
+});
+</script>
