@@ -10,6 +10,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Name</th>
+							<th>Action</th>
 						</tr>
 						<c:forEach var="category" items="${categories }">
 							<tr>
@@ -17,7 +18,7 @@
 								<td>${category.name }</td>
 								<td>
 									<a href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }">See exams of this</a> / 
-									<a href="${pageContext.request.contextPath }/category/edit.html?id=${category.id }">Edit</a>
+									<a href="${pageContext.request.contextPath }/category/edit.html?categoryid=${category.id }">Edit</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -26,4 +27,7 @@
 			</div>
 		</div>
 	</div>
+	
+	<br/><br/>
+	<div><a href="${pageContext.request.contextPath }/category/create.html">Create New Category</a></div>
 </div>

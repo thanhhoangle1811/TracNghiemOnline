@@ -70,7 +70,6 @@ public class GeneralController {
 			HttpServletRequest request) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		account.setEnabled(true);
-		//List<Role> roles = new ArrayList<Role>();
 		Account newAccount = accountService.create(account);
 		Role newRole = roleService.find(2);
 		AccountRole accountRole = new AccountRole();

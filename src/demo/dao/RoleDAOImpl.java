@@ -35,22 +35,24 @@ public class RoleDAOImpl implements RoleDAO {
 
 	@Override
 	public Role find(int id) {
-		Role roles = null;
+		Role role = null;
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			roles = (Role) session.get(Role.class, id);
+			Query query = session.createQuery(" FROM Role where id = :id");
+			query.setParameter("id", id);
+			role = (Role) query.uniqueResult();
 			transaction.commit();
 		} catch (Exception e) {
-			roles = null;
+			role = null;
 			if(transaction != null) {
 				transaction.rollback();
 			}
 		} finally {
 			session.close();
 		}
-		return roles;
+		return role;
 	}
 	
 }
