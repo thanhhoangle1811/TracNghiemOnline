@@ -2,6 +2,8 @@ package demo.entities;
 
 import java.util.*;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -113,7 +115,7 @@ public class Account implements java.io.Serializable {
         this.accountexams = accountexams;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+    @OneToMany(mappedBy = "primaryKey.account", cascade = CascadeType.ALL)
     public List<AccountRole> getAccountroles() {
         return this.accountroles;
     }
@@ -121,5 +123,8 @@ public class Account implements java.io.Serializable {
     public void setAccountroles(List<AccountRole> accountroles) {
         this.accountroles = accountroles;
     }
+    public void addAccountRoles(AccountRole accountRole) {
+        this.accountroles.add(accountRole);
+    }  
 
 }

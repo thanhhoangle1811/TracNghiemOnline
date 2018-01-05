@@ -1,76 +1,54 @@
 package demo.entities;
 
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
+import javax.persistence.*;
 
 @Entity
-@Table(name = "accountrole", catalog = "onlinequiz")
-public class AccountRole implements java.io.Serializable {
-
-    private AccountRoleId id;
-    private Account account;
-    private Role role;
+@Table(name = "accountrole", catalog="onlinequiz")
+@AssociationOverrides({
+        @AssociationOverride(name = "primaryKey.account",
+                joinColumns = @JoinColumn(name = "accountid")),
+        @AssociationOverride(name = "primaryKey.role",
+                joinColumns = @JoinColumn(name = "roleid")) })
+public class AccountRole {
+    private AccountRoleId primaryKey = new AccountRoleId();
+    
     private boolean enable;
 
-    public AccountRole() {
-    }
-
-    public AccountRole(AccountRoleId id, Account account, Role role, boolean enable) {
-        this.id = id;
-        this.account = account;
-        this.role = role;
-        this.enable = enable;
-    }
-
     @EmbeddedId
-
-    @AttributeOverrides({
-            @AttributeOverride(name = "accountid", column = @Column(name = "accountid", nullable = false)),
-            @AttributeOverride(name = "roleid", column = @Column(name = "roleid", nullable = false)) })
-    public AccountRoleId getId() {
-        return this.id;
+    public AccountRoleId getPrimaryKey() {
+        return primaryKey;
     }
 
-    public void setId(AccountRoleId id) {
-        this.id = id;
+    public void setPrimaryKey(AccountRoleId primaryKey) {
+        this.primaryKey = primaryKey;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accountid", nullable = false, insertable = false, updatable = false)
+    
+    @Transient
     public Account getAccount() {
-        return this.account;
+        return getPrimaryKey().getAccount();
     }
-
     public void setAccount(Account account) {
-        this.account = account;
+        getPrimaryKey().setAccount(account);
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "roleid", nullable = false, insertable = false, updatable = false)
+    
+    @Transient
     public Role getRole() {
-        return this.role;
+        return getPrimaryKey().getRole();
     }
-
     public void setRole(Role role) {
-        this.role = role;
+        getPrimaryKey().setRole(role);
     }
 
-    @Column(name = "enable", nullable = false)
+    @Column(name="enable",nullable = false, length = 1)
     public boolean isEnable() {
-        return this.enable;
+        return enable;
     }
 
     public void setEnable(boolean enable) {
         this.enable = enable;
     }
-
+    
+    
 }

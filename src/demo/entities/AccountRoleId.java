@@ -1,60 +1,29 @@
 package demo.entities;
 
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-
+import java.io.Serializable;
+import demo.entities.*;
+import javax.persistence.*;
 
 @Embeddable
-public class AccountRoleId implements java.io.Serializable {
-
-    private int accountid;
-    private int roleid;
-
-    public AccountRoleId() {
+public class AccountRoleId implements Serializable{
+    private Account account;
+    private Role role;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Account getAccount() {
+        return account;
     }
-
-    public AccountRoleId(int accountid, int roleid) {
-        this.accountid = accountid;
-        this.roleid = roleid;
+    public void setAccount(Account account) {
+        this.account = account;
     }
-
-    @Column(name = "accountid", nullable = false)
-    public int getAccountid() {
-        return this.accountid;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Role getRole() {
+        return role;
     }
-
-    public void setAccountid(int accountid) {
-        this.accountid = accountid;
+    public void setRole(Role role) {
+        this.role = role;
     }
-
-    @Column(name = "roleid", nullable = false)
-    public int getRoleid() {
-        return this.roleid;
-    }
-
-    public void setRoleid(int roleid) {
-        this.roleid = roleid;
-    }
-
-    public boolean equals(Object other) {
-        if ((this == other))
-            return true;
-        if ((other == null))
-            return false;
-        if (!(other instanceof AccountRoleId))
-            return false;
-        AccountRoleId castOther = (AccountRoleId) other;
-
-        return (this.getAccountid() == castOther.getAccountid()) && (this.getRoleid() == castOther.getRoleid());
-    }
-
-    public int hashCode() {
-        int result = 17;
-
-        result = 37 * result + this.getAccountid();
-        result = 37 * result + this.getRoleid();
-        return result;
-    }
+    
 
 }
