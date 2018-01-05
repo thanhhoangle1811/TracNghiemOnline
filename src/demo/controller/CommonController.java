@@ -15,7 +15,7 @@ public class CommonController {
 	@Autowired
 	private AccountService accountService;
 
-	private Account getAccountByAuthentication(){
+	protected Account getAccountByAuthentication(){
 		Account account = null;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {

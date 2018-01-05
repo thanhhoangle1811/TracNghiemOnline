@@ -35,9 +35,12 @@
 
 						<c:forEach items="${question.answers}" var="answer"
 							varStatus="stt">
+							<c:if test="${question.questiontype.name=='radio' }">
 							<input type="hidden" name="resultDTOs[${countAnswer }].isTrue"
 								value="false"
 								class="answer_${countAnswer } question_${question.id }" />
+							</c:if>
+							
 							<input type="hidden"
 								name="resultDTOs[${countAnswer }].result.answer.id"
 								value="${answer.id}" />

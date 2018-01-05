@@ -27,7 +27,7 @@ import demo.dto.*;
 @SuppressWarnings("unused")
 @Controller
 @RequestMapping("exam")
-public class ExamController {
+public class ExamController extends CommonController{
 	@Autowired
 	private ExamService examService;
 	@Autowired
@@ -124,7 +124,7 @@ public class ExamController {
 		modelMap.put("exam", exam);
 		modelMap.put("time", time);
 		//TODO: put value account
-		modelMap.put("accountId", 1);
+		modelMap.put("accountId", this.getAccountByAuthentication().getId());
 		return "exam.showexam";
 	}
 
