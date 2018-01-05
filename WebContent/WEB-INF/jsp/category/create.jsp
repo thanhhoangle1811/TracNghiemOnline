@@ -5,22 +5,17 @@
 <div class="sc_section sc_section_block">
 	<div class="sc_section_inner">
 		<div class="sc_section_content_wrap">
-			<s:form method="post" commandName="category"
-				action="${pageContext.request.contextPath }/category/create.html">
-				<div class="top_panel_title">
+			<div class="top_panel_title">
 					<div class="top_panel_title_inner">
 						<h1 class="page_title">Add Category</h1>
 					</div>
 				</div>
-				<table>
-					<tr>
-						<td>
+			<s:form method="post" commandName="category"
+				action="${pageContext.request.contextPath }/category/create.html" style="text-align: center;">
+				
 							<h4>Name :</h4> <input type="text" name="name" /> <br></br>
-						</td>
-					</tr>
-				</table>
+
 				<div>${msg }</div>
-				<br></br>
 				<button type="submit">Accept</button>
 			</s:form>
 		</div>

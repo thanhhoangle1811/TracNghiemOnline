@@ -12,18 +12,19 @@
 							<th>Id</th>
 							<th>Name</th>
 							<th>Action</th>
-							</tr>
+						</tr>
 						</thead>
 						<c:forEach var="category" items="${categories }">
 							<tr>
 								<td>${category.id }</td>
 								<td>${category.name }</td>
-								<td>
-									<a href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }">See exams of this</a> / 
-									<a href="${pageContext.request.contextPath }/category/edit.html?categoryid=${category.id }">Edit</a>
+								<td class="employment">
+									<a href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }"><span class="full">See exams of this</span></a>
+									<a href="${pageContext.request.contextPath }/category/edit.html?categoryid=${category.id }"><span class="part">Edit</span></a>
 								</td>
 							</tr>
 						</c:forEach>
+						
 					</table>
 				</div>
 			</div>
@@ -31,5 +32,6 @@
 	</div>
 	
 	<br/><br/>
-	<div><a href="${pageContext.request.contextPath }/category/create.html">Create New Category</a></div>
+	<div><a class="pushy_button sc_button" href="${pageContext.request.contextPath }/category/create.html">Create New Category</a>
+	</div>
 </div>

@@ -128,7 +128,7 @@ img.wp-smiley, img.emoji {
 <style id='micro_office-theme-style-inline-css' type='text/css'>
 .sidebar_outer_logo .logo_main, .top_panel_wrap .logo_main,
 	.top_panel_wrap .logo_fixed {
-	height: 81px
+	height: 45px
 }
 </style>
 <link property="stylesheet" rel='stylesheet'
@@ -279,9 +279,9 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 							<div class="logo">
 								<a href="../index.html"><img
 									src="${pageContext.request.contextPath }/assets/css/wp-content/uploads/2016/08/logo.png"
-									class="logo_main" alt="" width="202" height="81"><img
+									class="logo_main" alt="" width="202" height="44"><img
 									src="${pageContext.request.contextPath }/assets/css/wp-content/uploads/2016/08/logo.png"
-									class="logo_fixed" alt="" width="202" height="81"></a>
+									class="logo_fixed" alt="" width="202" height="44"></a>
 							</div>
 						</div>
 					</div>
@@ -326,10 +326,10 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 								
 							</li>
 							<li id="education-label"
-								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Education</span></a>
+								class="icon-school menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Exam</span></a>
 								</li>
 							<li id="result-label"
-								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Result</span></a></li>											
+								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Question</span></a></li>											
 						</ul>
 					</nav>
 				</div>
