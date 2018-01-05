@@ -97,6 +97,9 @@ $(document).ready(function() {
     	var count = $(this).attr('count');
     	removeExam(count);
     });
-    $("#submitButton").on("click",validAnswer());
+    
+    $("#submitButton").on("click",function(){
+    	validAnswer()});
+    }
 });
 </script>

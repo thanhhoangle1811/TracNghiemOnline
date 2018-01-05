@@ -180,6 +180,8 @@ img.wp-smiley, img.emoji {
 <script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/js/jquery-3.2.1.min.js?v=1.0'></script>
 	<script type='text/javascript'
+	src='${pageContext.request.contextPath }/assets/js/template.js?v=1.0'></script>
+	<script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/css/wp-content/js-lib/jquery.dataTables.min.js'></script>
 <script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/css/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
@@ -291,16 +293,17 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 			<!-- </.top_panel_wrap> -->
 			<div class="page_content_wrap">
 				<div class="menu_main_wrap">
+				<input type="hidden" id="label-flag" value="${label }"/>
 					<nav class="menu_main_nav_area">
 						<ul id="menu_main" class="menu_main_nav">
-							<li id="menu-item-4"
+							<li id="home-label"
 								class="icon-folder menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-4"><a
 								href="${pageContext.request.contextPath }/test/index.html"><span>Home</span></a>
 							</li>
-							<li id="menu-item-2165"
+							<li id="about-us-label"
 								class="icon-users-group menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a
 								href="aboutus.html"><span>About Us</span></a></li>
-							<li id="menu-item-2169"
+							<li id="category-label"
 								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a href="${pageContext.request.contextPath }/category/index.html"><span>Category</span></a>
 								
 								<ul class="sub-menu">
@@ -313,10 +316,10 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 								</ul>
 								
 							</li>
-							<li id="menu-item-2169"
+							<li id="education-label"
 								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Education</span></a>
 								</li>
-							<li id="menu-item-2165"
+							<li id="result-label"
 								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Result</span></a></li>											
 						</ul>
 					</nav>

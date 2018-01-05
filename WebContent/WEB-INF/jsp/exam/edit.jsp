@@ -122,7 +122,7 @@
 				</table>
 				<br />
 
-				<button type="submit">Accept</button>
+				<button type="button" id="submitButton">Accept</button>
 			</s:form>
 		</div>
 	</div>
@@ -147,6 +147,8 @@ $(document).ready(function() {
         var count = $(this).attr('count');
         removeExam(count);
     });
-    
+    $("#submitButton").on("click",function(){
+    	validAnswer()});
+    }
 });
 </script>

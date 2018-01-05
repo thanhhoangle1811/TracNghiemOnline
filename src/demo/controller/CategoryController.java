@@ -16,13 +16,14 @@ import demo.services.*;
 
 @Controller
 @RequestMapping("category")
-public class CategoryController {
+public class CategoryController extends CommonController{
 
 	@Autowired
 	private CategoryService categoryService;
 	
 	@RequestMapping(value = { "/index.html" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
+		this.setCommon(modelMap,"result-label");
 		modelMap.put("categories", 
 				categoryService.findAll());
 		return "category.index";
@@ -30,7 +31,7 @@ public class CategoryController {
 
 	@RequestMapping(value = { "/examsbycategory" }, params = { "id" }, method = RequestMethod.GET)
 	public String examsbycategory(@RequestParam(value = "id") int id, ModelMap modelMap) {
-
+		this.setCommon(modelMap,"category-label");
 		Category category =  categoryService.findById(id);
 		List<Exam> list = new ArrayList<Exam>(category.getExams());
 		modelMap.put("exams", list);

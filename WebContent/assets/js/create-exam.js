@@ -9,7 +9,6 @@ function createExam(num){
 	$(clone).insertAfter($(lstTr ));
 	var selectNew = $(clone).find('select');
 	$(selectNew).attr('name','exams['+ num +'].id').attr("count",num);
-	$(selectNew).val("");
 }
 function removeExam(num){
 	if($('.exam-value').length ==1){
