@@ -18,3 +18,23 @@ function removeExam(num){
 	var removeSelected = $('a[count="'+num+'"]').closest('.exam-value');
 	$(removeSelected).remove();
 }
+
+function validAnswer(){
+	var countInputVal =0;
+	var countCheckboxVal =0;
+	$('.answer-list').find("input[type='text']").each(function(){
+		if($(this).val().trim() != ''){
+			countInputVal++;
+		}
+	});
+	$('.answer-list').find("input[type='checkbox']").each(function(){
+		if($(this).is(":checked")){
+			countCheckboxVal++;
+		}
+	});
+	if(countCheckboxVal > countInputVal || countInputVal ==0 ||countCheckboxVal ==0){
+		alert("Red Alert!!");
+		return;
+	}
+	$("#question").submit();
+}

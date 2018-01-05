@@ -41,7 +41,6 @@
                 <tr class="exam-value">
                     <td>
                         <select name="exams[0].id" count="0">
-                                    <option value="">--- Select ---</option>
                                     <c:forEach items="${exams} " var="exam"
                                         varStatus="stt">
                                         <option
@@ -57,18 +56,21 @@
 					<tr>
 						<td>
 							<h4>Answer</h4>
-							<ul style="list-style-type: none">
-								<li><c:forEach begin="0" end="3" varStatus="status">
+							<ul class="answer-list" style="list-style-type: none">
+								
+								<c:forEach begin="0" end="3" varStatus="status">
+									<li>
 										<input type="checkbox" name="answers[${status.index }].istrue">
 										<input type="text" name="answers[${status.index }].content" />
-									</c:forEach></li>
+										</li>
+									</c:forEach>
 							</ul>
 
 						</td>
 					</tr>
 				</table>
 				<br></br>
-				<button type="submit">Accept</button>
+				<button id="submitButton" type="button">Accept</button>
 			</s:form>
 		</div>
 	</div>
@@ -95,6 +97,6 @@ $(document).ready(function() {
     	var count = $(this).attr('count');
     	removeExam(count);
     });
-    
+    $("#submitButton").on("click",validAnswer());
 });
 </script>

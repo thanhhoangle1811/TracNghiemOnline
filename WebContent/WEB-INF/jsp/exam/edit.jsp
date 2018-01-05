@@ -63,7 +63,6 @@
 					<tr class="exam-value">
 						<td>
 						<select name="exams[${examStatus.index }].id" count="${examStatus.index }">
-								<option value="">--- Select ---</option>
 								<c:forEach items="${exams} " var="exam" varStatus="stt">
 								<c:choose>
 								    <c:when test="${question.exams[examStatus.index].id == exams[stt.index].id}">
@@ -99,10 +98,12 @@
 					<tr>
 						<td>
 							<h4>Answer</h4>
-							<ul style="list-style-type: none">
+							<ul class="answer-list" style="list-style-type: none">
+							
 								<c:forEach items="${question.answers}" var="answer"
 									varStatus="statusA">
-									<li><input type="hidden"
+									<li>
+									<input type="hidden"
 										name="answers[${statusA.index}].id" value="${answer.id }" /> <c:if
 											test="${answer.istrue }">
 											<input type="checkbox"
@@ -111,7 +112,8 @@
 											<input type="checkbox"
 												name="answers[${statusA.index}].istrue" />
 										</c:if> <input name="answers[${statusA.index}].content"
-										value="${answer.content }" /></li>
+										value="${answer.content }" />
+										</li>
 								</c:forEach>
 							</ul>
 
