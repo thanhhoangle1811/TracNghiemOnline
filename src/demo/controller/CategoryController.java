@@ -40,11 +40,13 @@ public class CategoryController extends CommonController{
 	
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.GET)
 	public String create(ModelMap modelMap) {
+		this.setCommon(modelMap,"category-create-label");
 		return "category.create";
 	}
 
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.POST)
 	public String createCategory(@ModelAttribute("category") Category category, ModelMap modelMap) {
+		this.setCommon(modelMap,"category-create-post-label");
 		boolean flag = categoryService.createCategory(category);
 		String msg;
 		if (flag) {
@@ -58,14 +60,15 @@ public class CategoryController extends CommonController{
 	
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
 	public String edit(@RequestParam("categoryid") int categoryid, ModelMap modelMap) {
+		this.setCommon(modelMap,"category-edit-label");
 		Category category = categoryService.findById(categoryid);
-
 		modelMap.put("category", category);
 		return "category.edit";
 	}
 
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.POST)
 	public String edit(@ModelAttribute("category") Category category, ModelMap modelMap) {
+		this.setCommon(modelMap,"category-edit-post-label");
 		boolean flag = categoryService.updateCategory(category);
 		String msg;
 		if (flag) {

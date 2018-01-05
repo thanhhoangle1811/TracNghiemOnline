@@ -45,6 +45,7 @@ public class ExamController extends CommonController{
 	
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
 	public String edit(@RequestParam("questionid") int questionId, ModelMap modelMap) {
+		this.setCommon(modelMap,"question-edit-label");
 		List<Exam> exams = examService.findAll();
 		List<Questiontype> questiontypes = questionTypeService.findAll();
 		modelMap.put("questionTypes", questiontypes);
@@ -58,6 +59,7 @@ public class ExamController extends CommonController{
 
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.POST)
 	public String edit(@ModelAttribute("question") Question question, ModelMap modelMap) {
+		this.setCommon(modelMap,"question-edit-post-label");
 	    List<Exam> exams =  filterExam(question.getExams());
         question.setExams(exams);
 		boolean flag = questionService.updateQuestion(question);
@@ -70,6 +72,7 @@ public class ExamController extends CommonController{
 	}
 	@RequestMapping(value = { "/create-exam.html" }, method = RequestMethod.GET)
     public String createExam(ModelMap modelMap) {
+		this.setCommon(modelMap,"exm-create-label");
 	    List<Category> categories =  categoryService.findAll();
         modelMap.put("categories", categories);
         return "exam.create.exam";
@@ -77,8 +80,8 @@ public class ExamController extends CommonController{
 	
 	@RequestMapping(value = { "/create-exam.html" }, method = RequestMethod.POST)
     public String createExam(@ModelAttribute("exam") Exam exam, ModelMap modelMap) {
-        List<Category> categories =  categoryService.findAll();
-        
+		this.setCommon(modelMap,"exm-create-post-label");
+        List<Category> categories =  categoryService.findAll();        
         modelMap.put("categories", categories);
 	    examService.createExam(exam);
         return "exam.create.exam";
@@ -86,6 +89,7 @@ public class ExamController extends CommonController{
 
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.GET)
 	public String create(ModelMap modelMap) {
+		this.setCommon(modelMap,"question-create-label");
 		List<Exam> exams = examService.findAll();
 		List<Questiontype> questiontypes = questionTypeService.findAll();
 		modelMap.put("questionTypes", questiontypes);
@@ -95,6 +99,7 @@ public class ExamController extends CommonController{
 
 	@RequestMapping(value = { "/create.html" }, method = RequestMethod.POST)
 	public String createQuestion(@ModelAttribute("question") Question question, ModelMap modelMap) {
+		this.setCommon(modelMap,"question-create-post-label");
 		List<Exam> exams =  filterExam(question.getExams());
 		question.setExams(exams);
 		boolean flag = questionService.createQuestion(question);
@@ -113,6 +118,7 @@ public class ExamController extends CommonController{
 
 	@RequestMapping(value = { "/showexam.html" }, params = { "id" }, method = RequestMethod.GET)
 	public String showexam(@RequestParam(value = "id") int examId, ModelMap modelMap) {
+		this.setCommon(modelMap,"show-exam-label");
 		Exam exam = examService.findById(examId);
 		Date date = exam.getTime();
 		DateFormat formatter = new SimpleDateFormat("mm:ss");
@@ -139,21 +145,93 @@ public class ExamController extends CommonController{
 
 	@RequestMapping(value = { "/showexam.html" }, method = RequestMethod.POST)
 	public String showexam(@ModelAttribute("examDto") ExamDTO examDTO, ModelMap modelMap) {
+		this.setCommon(modelMap,"show-result-label");
 		String examName = examDTO.getExam().getName();
 		List<ResultDTO> resultDTOs = examDTO.getResultDTOs();
+		List<ResultDTO> trueResultDTOs = new ArrayList<ResultDTO>();
+		
+		for(int i = 0; i < resultDTOs.size(); i++){
+			String isTrue = resultDTOs.get(i).getIsTrue();
+			if (isTrue != null && (isTrue.equalsIgnoreCase("true") || isTrue.equalsIgnoreCase("on"))){
+				trueResultDTOs.add(resultDTOs.get(i));
+			}
+		}
+		
+		List<Integer> resultIds = new ArrayList<Integer>();
+		for(int i = 0; i < trueResultDTOs.size(); i++){
+			if(!resultIds.contains(trueResultDTOs.get(i).getResult().getQuestion().getId())){
+				resultIds.add(trueResultDTOs.get(i).getResult().getQuestion().getId());
+			}
+		}
+		
 		int totalQuestion = 0;
 		int totalRightAnswer = 0;
 		float totalGradeOfExam = 0;
 		float totalGradeOfUser = 0;
-		for (int i = 0; i < resultDTOs.size(); i++) {
+		
+		for(int i = 0; i < resultIds.size(); i++){
+			Question currentQuestion = questionService.findById(resultIds.get(i));
+			List<ResultDTO> resultDTOsOfCurrentQuestion = new ArrayList<ResultDTO>();
+			
+			for(int j = 0; j < trueResultDTOs.size(); j++){
+				if (trueResultDTOs.get(j).getResult().getQuestion().getId() == resultIds.get(i)){
+					resultDTOsOfCurrentQuestion.add(trueResultDTOs.get(j));
+				}
+			}
+			
+			totalGradeOfExam += currentQuestion.getGrade();
+			totalQuestion += 1;
+			List<Answer> answers = currentQuestion.getAnswers();
+			List<Answer> rightAnswersOfQuestion = new ArrayList<Answer>();
+			for (int j = 0; j < answers.size(); j++) {
+				if (answers.get(j).isIstrue()) {
+					rightAnswersOfQuestion.add(answers.get(j));
+				}
+			}
+			if (currentQuestion.getQuestiontype().getId() == 1) {
+				Answer rightAnswer = rightAnswersOfQuestion.get(0);		
+				if (rightAnswer != null 
+					&& resultDTOsOfCurrentQuestion.size() == 1
+					&& rightAnswer.getId() == resultDTOsOfCurrentQuestion.get(0).getResult().getAnswer().getId()) {
+					totalRightAnswer++;
+					totalGradeOfUser += currentQuestion.getGrade();
+				}
+			} else {				
+				if(rightAnswersOfQuestion.size() == resultDTOsOfCurrentQuestion.size()){
+					int numberOfRightAnswer = 0;
+					for (int k = 0; k < rightAnswersOfQuestion.size(); k++){
+						for (int l = 0; l < resultDTOsOfCurrentQuestion.size(); l++){
+							if(resultDTOsOfCurrentQuestion.get(l).getResult().getAnswer().getId() == rightAnswersOfQuestion.get(k).getId()){
+								numberOfRightAnswer++;
+								break;
+							}
+						}
+					}
+					if(numberOfRightAnswer == rightAnswersOfQuestion.size()){
+						totalRightAnswer++;
+						totalGradeOfUser += currentQuestion.getGrade();
+					}
+				}
+			}
+			
+		}
+		
+		
+		/*for (int i = 0; i < resultDTOs.size(); i++) {
 			String isTrue = resultDTOs.get(i).getIsTrue();
 			if (isTrue != null && (isTrue.equalsIgnoreCase("true") || isTrue.equalsIgnoreCase("on"))) {
 				Question currentQuestion = questionService.findById(resultDTOs.get(i).getResult().getQuestion().getId());
 				totalGradeOfExam += currentQuestion.getGrade();
 				totalQuestion += 1;
+				List<Answer> answers = currentQuestion.getAnswers();
+				List<Answer> rightAnswersOfQuestion = new ArrayList<Answer>();
+				for (int j = 0; j < answers.size(); j++) {
+					if (answers.get(j).isIstrue()) {
+						rightAnswersOfQuestion.add(answers.get(j));
+					}
+				}
 				if (currentQuestion.getQuestiontype().getId() == 1) {
-					Answer rightAnswer = null;
-					List<Answer> answers = currentQuestion.getAnswers();
+					Answer rightAnswer = rightAnswersOfQuestion.get(0);					
 					for (int j = 0; j < answers.size(); j++) {
 						if (answers.get(j).isIstrue()) {
 							rightAnswer = answers.get(j);
@@ -168,7 +246,7 @@ public class ExamController extends CommonController{
 					//TODO: check case questionType = 2
 				}
 			}			
-		}		
+		}*/		
 		
 		questionService.storeAnswerStu(examDTO, totalGradeOfUser,totalGradeOfExam);
 		modelMap.put("examName", examName);

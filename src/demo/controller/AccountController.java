@@ -53,6 +53,7 @@ public class AccountController extends CommonController{
 	
 	@RequestMapping(value = { "/userquizhistory" }, params = { "id" }, method = RequestMethod.GET)
 	public String userQuizHistory(@RequestParam(value = "id") int id, ModelMap modelMap) {
+		this.setCommon(modelMap);
 		Account account =  accountService.getAccountById(id);
 		List<AccountExam> quizlist = account.getAccountexams();
 		List<ExamOfUserDTO> quizes = new ArrayList<ExamOfUserDTO>();
