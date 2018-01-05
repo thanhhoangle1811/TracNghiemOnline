@@ -23,7 +23,7 @@ public class CategoryController extends CommonController{
 	
 	@RequestMapping(value = { "/index.html" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
-		this.setCommon(modelMap,"result-label");
+		this.setCommon(modelMap,"category-label");
 		modelMap.put("categories", 
 				categoryService.findAll());
 		return "category.index";
