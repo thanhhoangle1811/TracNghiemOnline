@@ -7,12 +7,14 @@
 			<div id="sc_vacancies_508391825_wrap" class="sc_vacancies_wrap">
 				<div id="sc_vacancies_508391825" class="sc_vacancies sc_table">
 					<table border="1" cellpadding="2" cellspacing="2">
+						<thead>
 						<tr>
 							<th>No</th>
 							<th>Name</th>
 							<th>Email</th>
 							<th></th>
 						</tr>
+						</thead>
 						<c:forEach var="account" items="${accounts }"  varStatus="status">
 							<tr>
 								<td>${status.index + 1}</td>

@@ -44,6 +44,11 @@ img.wp-smiley, img.emoji {
 	padding: 0 !important;
 }
 </style>
+<link property="stylesheet" rel='stylesheet'
+	href='${pageContext.request.contextPath }/assets/css/dataTables.bootstrap.min.css?ver=4.7.7'/>
+<link property="stylesheet" rel='stylesheet'
+	href='${pageContext.request.contextPath }/assets/css/bootstrap.min.css?ver=4.7.7'
+	type='text/css' media='all' />
 <link property="stylesheet" rel='stylesheet' id='timeline-css-css'
 	href='${pageContext.request.contextPath }/assets/css/wp-content/plugins/content_timeline/css/frontend/timeline447e.css?ver=4.7.7'
 	type='text/css' media='all' />
@@ -179,6 +184,10 @@ img.wp-smiley, img.emoji {
 	src='${pageContext.request.contextPath }/assets/css/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
 <script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/js/jquery-3.2.1.min.js?v=1.0'></script>
+<script type='text/javascript'
+	src='${pageContext.request.contextPath }/assets/js/dataTables.bootstrap.min.js?v=1.0'></script>	
+<script type='text/javascript'
+	src='${pageContext.request.contextPath }/assets/js/jquery.dataTables.min.js?v=1.0'></script>	
 	<script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/js/template.js?v=1.0'></script>
 	<script type='text/javascript'

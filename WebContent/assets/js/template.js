@@ -8,4 +8,7 @@ $( document ).ready(function() {
 	
 		$('#'+label).addClass('current-menu-ancestor');
 	}
+	$('table').DataTable({
+		"bLengthChange" : false
+	}); 
 });

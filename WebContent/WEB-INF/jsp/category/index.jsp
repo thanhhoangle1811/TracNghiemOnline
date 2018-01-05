@@ -7,11 +7,13 @@
 			<div id="sc_vacancies_508391825_wrap" class="sc_vacancies_wrap">
 				<div id="sc_vacancies_508391825" class="sc_vacancies sc_table">
 					<table border="1" cellpadding="2" cellspacing="2">
+						<thead>
 						<tr>
 							<th>Id</th>
 							<th>Name</th>
 							<th>Action</th>
-						</tr>
+							</tr>
+						</thead>
 						<c:forEach var="category" items="${categories }">
 							<tr>
 								<td>${category.id }</td>
