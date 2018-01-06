@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import demo.entities.Category;
 import demo.entities.Exam;
-import demo.entities.Question;
-import demo.entities.Questiontype;
 import demo.services.*;
 
 @Controller

@@ -9,11 +9,14 @@ import org.springframework.ui.ModelMap;
 
 import demo.entities.Account;
 import demo.services.AccountService;
+import demo.services.CategoryService;
 
 public class CommonController {
 
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private CategoryService categoryService;
 
 	protected Account getAccountByAuthentication(){
 		Account account = null;
@@ -27,12 +30,15 @@ public class CommonController {
 	
 	public void setCommon(ModelMap modelMap) {
 		Account account = getAccountByAuthentication();
-		// Account account = accountService.getAccountById(1);
+		modelMap.put("categories", 
+				categoryService.findAll());
 		modelMap.put("accoutInfo", account);
 	}
 
 	public void setCommon(ModelMap modelMap, String label) {
 		Account account = getAccountByAuthentication();
+		modelMap.put("categories", 
+				categoryService.findAll());
 		modelMap.put("accoutInfo", account);
 		if (label != null) {
 			modelMap.put("label", label);

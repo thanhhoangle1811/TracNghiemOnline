@@ -45,7 +45,7 @@ public class ExamController extends CommonController{
 	
 	@RequestMapping(value = { "/index.html" }, method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
-		this.setCommon(modelMap,"exam-label");
+		this.setCommon(modelMap,"education-label");
 		modelMap.put("exams", 
 				examService.findAll());
 		return "exam.index";
@@ -84,8 +84,8 @@ public class ExamController extends CommonController{
 		} else {
 			return "demo.index";
 		}
-
 	}
+	
 	@RequestMapping(value = { "/create-exam.html" }, method = RequestMethod.GET)
     public String createExam(ModelMap modelMap) {
 		this.setCommon(modelMap,"exm-create-label");
@@ -128,9 +128,7 @@ public class ExamController extends CommonController{
 		} else {
 			return "demo.index";
 		}
-
 	}
-	/* Ca le */
 
 	@RequestMapping(value = { "/showexam.html" }, params = { "id" }, method = RequestMethod.GET)
 	public String showexam(@RequestParam(value = "id") int examId, ModelMap modelMap) {
@@ -138,9 +136,7 @@ public class ExamController extends CommonController{
 		Exam exam = examService.findById(examId);
 		Date date = exam.getTime();
 		DateFormat formatter = new SimpleDateFormat("mm:ss");
-
 		String time = formatter.format(date);
-
 		List<Question> list = filterQuestion(exam);
 		modelMap.put("questions", list);
 		modelMap.put("exam", exam);
@@ -231,38 +227,6 @@ public class ExamController extends CommonController{
 			}
 			
 		}
-		
-		
-		/*for (int i = 0; i < resultDTOs.size(); i++) {
-			String isTrue = resultDTOs.get(i).getIsTrue();
-			if (isTrue != null && (isTrue.equalsIgnoreCase("true") || isTrue.equalsIgnoreCase("on"))) {
-				Question currentQuestion = questionService.findById(resultDTOs.get(i).getResult().getQuestion().getId());
-				totalGradeOfExam += currentQuestion.getGrade();
-				totalQuestion += 1;
-				List<Answer> answers = currentQuestion.getAnswers();
-				List<Answer> rightAnswersOfQuestion = new ArrayList<Answer>();
-				for (int j = 0; j < answers.size(); j++) {
-					if (answers.get(j).isIstrue()) {
-						rightAnswersOfQuestion.add(answers.get(j));
-					}
-				}
-				if (currentQuestion.getQuestiontype().getId() == 1) {
-					Answer rightAnswer = rightAnswersOfQuestion.get(0);					
-					for (int j = 0; j < answers.size(); j++) {
-						if (answers.get(j).isIstrue()) {
-							rightAnswer = answers.get(j);
-							break;
-						}
-					}
-					if (rightAnswer != null && rightAnswer.getId() == resultDTOs.get(i).getResult().getAnswer().getId()) {
-						totalRightAnswer++;
-						totalGradeOfUser += currentQuestion.getGrade();
-					}
-				} else {
-					//TODO: check case questionType = 2
-				}
-			}			
-		}*/		
 		
 		questionService.storeAnswerStu(examDTO, totalGradeOfUser,totalGradeOfExam);
 		modelMap.put("examName", examName);

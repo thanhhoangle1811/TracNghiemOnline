@@ -7,7 +7,7 @@
 <title>Access is denied</title>
 </head>
 <body>
-	<h3>Access is denied</h3>
+	<h3>You have no right to access this page</h3>
 	<a href="${pageContext.request.contextPath}/main/welcome.html">Back</a> 
 </body>
 </html>

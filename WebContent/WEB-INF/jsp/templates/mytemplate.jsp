@@ -324,8 +324,7 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 							<li id="education-label"
 								class="icon-school menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a href="${pageContext.request.contextPath }/exam/index.html"><span>Exam</span></a>
 								</li>
-							<li id="result-label"
-								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Question</span></a></li>											
+																
 						</ul>
 					</nav>
 				</div>
