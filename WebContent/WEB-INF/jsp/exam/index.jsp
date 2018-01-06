@@ -11,20 +11,21 @@
 						<tr>
 							<th>No</th>
 							<th>Name</th>
+							<th>Category</th>
 							<th>Action</th>
 						</tr>
 						</thead>
-						<c:forEach var="category" items="${categories }" varStatus="status">
+						<c:forEach var="exam" items="${exams }"  varStatus="status">
 							<tr>
 								<td>${status.index + 1}</td>
-								<td>${category.name }</td>
+								<td>${exam.name }</td>
+								<td>${exam.category.name }</td>
 								<td class="employment">
-									<a href="${pageContext.request.contextPath }/category/examsbycategory.html?id=${category.id }"><span class="full">See exams of this</span></a>
-									<a href="${pageContext.request.contextPath }/category/edit.html?categoryid=${category.id }"><span class="part">Edit</span></a>
+									<a href="${pageContext.request.contextPath }/exam/questionlist.html?id=${exam.id }"><span class="full">See question of this exam</span></a>
+									<a href="${pageContext.request.contextPath }/exam/create-exam.html?examid=${exam.id }"><span class="part">Edit</span></a>
 								</td>
 							</tr>
-						</c:forEach>
-						
+						</c:forEach>						
 					</table>
 				</div>
 			</div>
@@ -32,6 +33,7 @@
 	</div>
 	
 	<br/><br/>
-	<div><a class="pushy_button sc_button" href="${pageContext.request.contextPath }/category/create.html">Create New Category</a>
+	<div>
+		<a class="pushy_button sc_button" href="${pageContext.request.contextPath }/exam/create-exam.html">Add New Exam</a>
 	</div>
 </div>

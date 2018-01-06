@@ -24,6 +24,18 @@
     		value="/WEB-INF/jsp/exam/edit.jsp"></put-attribute>
     </definition>
     
+    <definition name="exam.index" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/exam/index.jsp"></put-attribute>
+    </definition>
+    
+    <definition name="exam.questionlist" 
+    	template="/WEB-INF/jsp/templates/mytemplate.jsp">
+    	<put-attribute name="content" 
+    		value="/WEB-INF/jsp/exam/questionlist.jsp"></put-attribute>
+    </definition>
+    
     <!-- ca le  Ca le viet */ -->
     <definition name="category.index" 
     	template="/WEB-INF/jsp/templates/mytemplate.jsp">

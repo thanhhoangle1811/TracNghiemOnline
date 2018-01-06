@@ -43,6 +43,22 @@ public class ExamController extends CommonController{
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));  
 	}
 	
+	@RequestMapping(value = { "/index.html" }, method = RequestMethod.GET)
+	public String index(ModelMap modelMap) {
+		this.setCommon(modelMap,"exam-label");
+		modelMap.put("exams", 
+				examService.findAll());
+		return "exam.index";
+	}
+	
+	@RequestMapping(value = { "/questionlist.html" }, method = RequestMethod.GET)
+	public String showQuestionList(@RequestParam("examid") int examid, ModelMap modelMap) {
+		this.setCommon(modelMap,"question-list-label");
+		modelMap.put("questions", 
+				questionService.findQuestionByExamid(examid));
+		return "exam.questionlist";
+	}
+	
 	@RequestMapping(value = { "/edit.html" }, method = RequestMethod.GET)
 	public String edit(@RequestParam("questionid") int questionId, ModelMap modelMap) {
 		this.setCommon(modelMap,"question-edit-label");
