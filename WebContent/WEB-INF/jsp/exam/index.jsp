@@ -21,7 +21,7 @@
 								<td>${exam.name }</td>
 								<td>${exam.category.name }</td>
 								<td class="employment">
-									<a href="${pageContext.request.contextPath }/exam/questionlist.html?id=${exam.id }"><span class="full">See question of this exam</span></a>
+									<a href="${pageContext.request.contextPath }/exam/questionlist.html?examid=${exam.id }"><span class="full">See question of this exam</span></a>
 									<a href="${pageContext.request.contextPath }/exam/create-exam.html?examid=${exam.id }"><span class="part">Edit</span></a>
 								</td>
 							</tr>
