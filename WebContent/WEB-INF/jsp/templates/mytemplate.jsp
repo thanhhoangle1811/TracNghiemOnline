@@ -308,9 +308,6 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 								class="icon-folder menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-4"><a
 								href="${pageContext.request.contextPath }/test/index.html"><span>Home</span></a>
 							</li>
-							<li id="about-us-label"
-								class="icon-users-group menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a
-								href="aboutus.html"><span>About Us</span></a></li>
 							<li id="category-label"
 								class="icon-book menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a href="${pageContext.request.contextPath }/category/index.html"><span>Category</span></a>
 								
@@ -325,7 +322,7 @@ var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","le
 								
 							</li>
 							<li id="education-label"
-								class="icon-school menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a><span>Exam</span></a>
+								class="icon-school menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2169"><a href="${pageContext.request.contextPath }/exam/index.html"><span>Exam</span></a>
 								</li>
 							<li id="result-label"
 								class="icon-rocket menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2165"><a><span>Question</span></a></li>											
@@ -421,17 +418,6 @@ ${accoutInfo.firstname }
 											<!-- /.footer_wrap_inner -->
 			</footer>
 			<!-- /.footer_wrap -->
-
-			<div class="copyright_wrap copyright_style_text  scheme_original">
-				<div class="copyright_wrap_inner">
-					<div class="content_wrap">
-						<div class="copyright_text">
-							Micro Office � 2016-2017 All Rights Reserved. <a href="#">Terms
-								of use</a> and <a href="#">Privacy Policy</a>
-						</div>
-					</div>
-				</div>
-			</div>
 
 		</div>
 		<!-- /.page_wrap -->
