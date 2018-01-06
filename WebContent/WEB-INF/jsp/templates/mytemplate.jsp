@@ -188,8 +188,7 @@ img.wp-smiley, img.emoji {
 	src='${pageContext.request.contextPath }/assets/js/dataTables.bootstrap.min.js?v=1.0'></script>	
 <script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/js/jquery.dataTables.min.js?v=1.0'></script>	
-	<script type='text/javascript'
-	src='${pageContext.request.contextPath }/assets/js/template.js?v=1.0'></script>
+	
 	<script type='text/javascript'
 	src='${pageContext.request.contextPath }/assets/css/wp-content/js-lib/jquery.dataTables.min.js'></script>
 <script type='text/javascript'
@@ -571,7 +570,8 @@ var the_ajax_script = {"ajaxurl":"http:\/\/microoffice.themerex.net\/wp-admin\/a
 		src='${pageContext.request.contextPath }/assets/css/wp-content/plugins/eventon-full-cal/assets/jquery.mobile.minc64e.js?ver=1.1.1'></script>
 	<script type='text/javascript'
 		src='${pageContext.request.contextPath }/assets/css/wp-content/plugins/eventon-full-cal/assets/fc_scriptc64e.js?ver=1.1.1'></script>
-
+<script type='text/javascript'
+	src='${pageContext.request.contextPath }/assets/js/template.js?v=1.0'></script>
 </body>
 
 <!-- Mirrored from microoffice.themerex.net/home-2/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Nov 2017 15:25:22 GMT -->

@@ -20,6 +20,6 @@
 			</s:form>
 		</div>
 		<br></br>
-		<div><a href="${pageContext.request.contextPath }/category/index.html">All Categories</a></div>
+		<div><a class="pushy_button sc_button"  href="${pageContext.request.contextPath }/category/index.html"><span class="icon-left-open"></span>   All Categories</a></div>
 	</div>
 </div>

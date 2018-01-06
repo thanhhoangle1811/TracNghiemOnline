@@ -15,29 +15,22 @@
 						<h1 class="page_title">Add Tests and Quiz</h1>
 					</div>
 				</div>
-				<table>
-					<tr>
-						<td>
 							<h4>Content :</h4> <input type="text" name="content" /> <br></br>
-						</td>
-						<td>
+
 							<h4>Grade :</h4> <input type="text" name="grade" /> <br></br>
-						</td>
-					</tr>
-					<tr>
-						<td>
+
 							<h4>QuestionType :</h4> <select name="questiontype.id">
 								<option value="">--- Select ---</option>
 								<c:forEach items="${questionTypes} " var="type" varStatus="stt">
 									<option value="${questionTypes[stt.index].id}">${questionTypes[stt.index].name}</option>
 								</c:forEach>
-						</select>
-						</td>
-					</tr>
-				</table>
+							</select>
 				<br></br>
                 <table>
-                <tr><td>Exam</td></tr>
+                <tr>
+                <td><h4>Exam</h4></td>
+                <td><a id="create-exam">Add</a></td>
+                </tr>
                 <tr class="exam-value">
                     <td>
                         <select name="exams[0].id" count="0">
@@ -48,13 +41,11 @@
                                     </c:forEach>
                         </select>
                     </td>
-                    <td><a class="remove-question" count="0">- (Question)</a></td>
+                    <td><a class="remove-question" count="0">Delete</a></td>
                 </tr>
                 </table>
-                <a id="create-exam">+ (Exam)</a>
-				<table>
-					<tr>
-						<td>
+                
+
 							<h4>Answer</h4>
 							<ul class="answer-list" style="list-style-type: none">
 								
@@ -66,9 +57,6 @@
 									</c:forEach>
 							</ul>
 
-						</td>
-					</tr>
-				</table>
 				<br></br>
 				<button id="submitButton" type="button">Accept</button>
 			</s:form>
@@ -78,6 +66,7 @@
 <script>
 
 $(document).ready(function() {
+	debugger;
     var countExam = $('#countExam').val();
     /* countExam = createExam(countExam)
     $('#countExam').val(countExam); */
@@ -99,7 +88,8 @@ $(document).ready(function() {
     });
     
     $("#submitButton").on("click",function(){
-    	validAnswer()});
-    }
+    	validAnswer();
+    	});
+    
 });
 </script>
