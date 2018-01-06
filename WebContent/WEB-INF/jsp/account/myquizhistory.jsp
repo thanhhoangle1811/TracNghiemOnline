@@ -9,12 +9,14 @@
 				<div id="sc_vacancies_508391825" class="sc_vacancies sc_table">
 					<div>My Quiz History</div>
 					<table cellpadding="2" cellspacing="">
-						<tr>
+					<thead>
+					<tr>
 							<th>No</th>
 							<th>Quiz Name</th>
 							<th>Mark</th>
 							<th>Date</th>
 						</tr>
+					</thead>
 						<c:forEach var="quiz" items="${quizes}" varStatus="status">
 							<tr>
 								<td>${status.index + 1}</td>
